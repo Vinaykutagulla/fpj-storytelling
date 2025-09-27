@@ -2,7 +2,7 @@
   "name": "fpj-storytelling",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://firstpharmajob.com/",
+  "homepage": ".",
   "dependencies": {
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.3.0",
