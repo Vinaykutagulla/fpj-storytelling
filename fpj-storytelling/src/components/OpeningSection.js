@@ -49,7 +49,7 @@ const OpeningSection = () => {
     <motion.div 
       role="region"
       aria-labelledby="opening-heading"
-      className="w-full min-h-[70vh] flex items-start relative pt-16 pb-8 lg:pt-20 lg:pb-12"
+      className="w-full min-h-[70vh] flex items-start relative pt-12 pb-6 sm:pt-14 sm:pb-8 lg:pt-20 lg:pb-12"
       style={{
         background: `
           linear-gradient(135deg, 
@@ -66,7 +66,7 @@ const OpeningSection = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         
         {/* Two Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
+  <div className="grid lg:grid-cols-2 gap-10 md:gap-8 items-center">
           
           {/* Content Column */}
           <div className="text-left">
@@ -77,7 +77,7 @@ const OpeningSection = () => {
               className="space-y-3"
             >
               {/* Main Headline */}
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight">
+              <h1 className="text-[1.85rem] leading-[2.2rem] md:text-4xl lg:text-5xl font-bold tracking-tight">
                 <motion.span 
                   className="block text-slate-800"
                   initial={{ opacity: 0, y: 20 }}
@@ -112,21 +112,21 @@ const OpeningSection = () => {
 
               {/* Call to Action Buttons */}
               <motion.div
-                className="flex flex-col sm:flex-row gap-6"
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.3 }}
               >
                 <Link 
                   to="/services"
-                  className="px-10 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold text-lg rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-center min-w-[200px]"
+                  className="w-full sm:w-auto px-8 py-3 sm:px-10 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold text-base sm:text-lg rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-[1.03] shadow-lg hover:shadow-xl text-center"
                   aria-label="View our professional training programs"
                 >
                   Start Your Journey
                 </Link>
                 <Link 
                   to="/contact"
-                  className="px-10 py-4 border-2 border-blue-600 text-blue-700 font-bold text-lg rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg text-center min-w-[200px]"
+                  className="w-full sm:w-auto px-8 py-3 sm:px-10 sm:py-4 border-2 border-blue-600 text-blue-700 font-bold text-base sm:text-lg rounded-xl hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-[1.03] shadow-md hover:shadow-lg text-center"
                   aria-label="Get in touch to discuss your pharmaceutical career"
                 >
                   Get In Touch
@@ -236,7 +236,7 @@ const OpeningSection = () => {
 
         {/* Simple Journey Preview */}
         <motion.div 
-          className="mt-16 text-center"
+          className="mt-12 sm:mt-14 md:mt-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.0 }}

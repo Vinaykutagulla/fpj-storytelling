@@ -194,7 +194,7 @@ const FloatingProgressIndicator = ({ items, activeId }) => {
 
   return (
     <motion.div 
-      className="floating-progress-portal fixed right-6 top-1/2 transform -translate-y-1/2 z-50"
+      className="floating-progress-portal hidden sm:block fixed right-3 lg:right-6 top-1/2 transform -translate-y-1/2 z-50"
       initial={{ opacity: 0, x: 100 }}
       animate={{ 
         opacity: isVisible ? 1 : 0.6,
@@ -297,7 +297,7 @@ const FloatingProgressIndicator = ({ items, activeId }) => {
       </div>
       
       {/* Section dots */}
-      <div className="mt-6 flex flex-col gap-3">
+      <div className="mt-4 flex flex-col gap-2 lg:mt-6 lg:gap-3">
         {items.map((item, idx) => (
           <motion.a
             key={item.id}
@@ -398,7 +398,7 @@ const HomePage = () => {
         {liveMessage}
       </div>
       {/* Floating Progress Indicator */}
-      <FloatingProgressIndicator items={sections} activeId={activeId} />
+  <FloatingProgressIndicator items={sections} activeId={activeId} />
       
       {/* Full-width Content Layout */}
       <div className="w-full">
