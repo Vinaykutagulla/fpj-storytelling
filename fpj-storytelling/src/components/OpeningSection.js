@@ -49,7 +49,7 @@ const OpeningSection = () => {
     <motion.div 
       role="region"
       aria-labelledby="opening-heading"
-      className="w-full min-h-[70vh] flex items-start relative pt-12 pb-6 sm:pt-14 sm:pb-8 lg:pt-20 lg:pb-12"
+      className="w-full min-h-[70vh] flex items-start relative pt-12 sm:pt-16 lg:pt-20 pb-4 sm:pb-6 lg:pb-8"
       style={{
         background: `
           linear-gradient(135deg, 

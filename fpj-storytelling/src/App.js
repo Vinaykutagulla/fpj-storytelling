@@ -403,20 +403,32 @@ const HomePage = () => {
       {/* Full-width Content Layout */}
       <div className="w-full">
         <div className="space-y-0">
-          {sections.map((s) => (
-            <motion.section
-              key={s.id}
-              id={s.id}
-              aria-label={s.title}
-              initial={{ opacity: 0.9 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              viewport={{ amount: 0.15, once: true }}
-              className="min-h-screen flex flex-col justify-start"
-            >
-              {s.node}
-            </motion.section>
-          ))}
+          {sections.map((s, idx) => {
+            const isHero = s.id === 'opening';
+            return (
+              <motion.section
+                key={s.id}
+                id={s.id}
+                aria-label={s.title}
+                initial={{ opacity: 0.9 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                viewport={{ amount: 0.15, once: true }}
+                className={[
+                  'flex flex-col justify-start',
+                  'relative',
+                  'scroll-mt-20', // offset for fixed nav
+                  'bg-white/0',
+                  'min-h-[80vh]', // slightly shorter to reduce excessive white
+                  !isHero && 'py-12 sm:py-20 lg:py-24',
+                  isHero && 'pt-0',
+                  idx > 0 && 'border-t border-slate-200/40'
+                ].filter(Boolean).join(' ')}
+              >
+                {s.node}
+              </motion.section>
+            );
+          })}
         </div>
       </div>
     </>

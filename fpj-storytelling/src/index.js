@@ -12,12 +12,6 @@ root.render(
   </React.StrictMode>
 );
 
-// Debug: confirm app mounted in production
-if (typeof window !== 'undefined') {
-  console.log('[FPJ] React application mounted at', new Date().toISOString());
-}
+// Removed temporary mount debug log now that production layout is stable.
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
