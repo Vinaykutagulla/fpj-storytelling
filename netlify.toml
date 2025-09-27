@@ -4,6 +4,11 @@
   publish = "fpj-storytelling/build"
   command = "npm run build"
 
+[build.environment]
+  NODE_VERSION = "18.20.3"
+  CI = "false"            # Prevent react-scripts from treating warnings as errors
+  NPM_FLAGS = "--no-audit --no-fund"
+
 # Mirror SPA redirect at root level (Netlify will merge with subdir file if present; root takes precedence)
 [[redirects]]
   from = "/*"
