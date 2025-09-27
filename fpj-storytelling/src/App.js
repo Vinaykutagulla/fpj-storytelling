@@ -404,16 +404,18 @@ const HomePage = () => {
       <div className="w-full">
         <div className="space-y-0">
           {sections.map((s) => (
-            <motion.div 
+            <motion.section
               key={s.id}
               id={s.id}
+              aria-label={s.title}
               initial={{ opacity: 0.9 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              viewport={{ amount: 0.2, once: true }}
+              viewport={{ amount: 0.15, once: true }}
+              className="min-h-screen flex flex-col justify-start"
             >
               {s.node}
-            </motion.div>
+            </motion.section>
           ))}
         </div>
       </div>
@@ -436,11 +438,13 @@ const Layout = ({ children }) => {
       {/* Navigation */}
       <Navigation />
       
-      {/* Main Content */}
-      <main id="main-content" role="main" className="relative z-10 pt-16 h-screen overflow-y-auto overscroll-y-contain scroll-smooth">
+      {/* Main Content: remove internal scroll container (h-screen + overflow) so browser window scroll shows all sections */}
+      <main
+        id="main-content"
+        role="main"
+        className="relative z-10 pt-20 pb-10"
+      >
         {children}
-        
-
       </main>
       <Footer />
     </div>
