@@ -1,0 +1,26 @@
+# Root ignore
+node_modules/
+fpj-storytelling/node_modules/
+my-app/node_modules/
+my-app/
+# Build outputs
+fpj-storytelling/build/
+my-app/build/
+build/
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+# Env
+.env
+.env.local
+# Editor
+.vscode/
+.DS_Store
+Thumbs.db
+# Coverage / tests
+coverage/
+# Misc
+*.tmp

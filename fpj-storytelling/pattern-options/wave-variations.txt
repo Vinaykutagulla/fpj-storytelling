@@ -1,0 +1,20 @@
+// OPTION 5: Different Wave Sizes and Spacing
+
+// Smaller, tighter waves:
+<pattern id="seigaiha-small" x="0" y="0" width="40" height="20" patternUnits="userSpaceOnUse">
+  <path d="M0,20 Q10,10 20,20 T40,20" stroke="#3b82f6" strokeWidth="0.5" fill="none"/>
+  <path d="M0,20 Q10,7 20,20 T40,20" stroke="#3b82f6" strokeWidth="0.3" fill="none"/>
+</pattern>
+
+// Larger, wider waves:
+<pattern id="seigaiha-large" x="0" y="0" width="120" height="60" patternUnits="userSpaceOnUse">
+  <path d="M0,60 Q30,30 60,60 T120,60" stroke="#3b82f6" strokeWidth="1" fill="none"/>
+  <path d="M0,60 Q30,20 60,60 T120,60" stroke="#3b82f6" strokeWidth="0.7" fill="none"/>
+  <path d="M0,60 Q30,40 60,60 T120,60" stroke="#3b82f6" strokeWidth="0.5" fill="none"/>
+</pattern>
+
+// Vertical waves:
+<pattern id="seigaiha-vertical" x="0" y="0" width="40" height="80" patternUnits="userSpaceOnUse">
+  <path d="M40,0 Q20,20 40,40 T40,80" stroke="#3b82f6" strokeWidth="0.5" fill="none"/>
+  <path d="M40,0 Q15,20 40,40 T40,80" stroke="#3b82f6" strokeWidth="0.3" fill="none"/>
+</pattern>

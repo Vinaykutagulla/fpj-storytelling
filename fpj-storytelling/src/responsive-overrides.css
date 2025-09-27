@@ -1,0 +1,81 @@
+/* Responsive overrides for improved mobile UX */
+
+/* 1. Reduce top padding under fixed nav on small screens */
+@media (max-width: 640px) {
+  main#main-content {
+    padding-top: 4.5rem; /* slightly less vertical space */
+  }
+}
+
+/* 2. Adjust floating progress indicator position & scale on narrow viewports */
+@media (max-width: 820px) {
+  .floating-progress-portal {
+    right: 0.75rem !important;
+  }
+  .floating-progress-portal > div { /* container motion wrapper */
+    transform-origin: center;
+  }
+}
+@media (max-width: 640px) {
+  .floating-progress-portal {
+    top: auto !important;
+    bottom: 1rem;
+    right: 0.75rem !important;
+    transform: none !important;
+  }
+  .floating-progress-portal .w-24.h-24 { /* shrink main circle */
+    width: 4.25rem !important;
+    height: 4.25rem !important;
+  }
+  .floating-progress-portal .mt-6 { /* stack dots closer */
+    margin-top: 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+  .floating-progress-portal .w-4.h-4 { /* reduce dot size */
+    width: 0.6rem !important;
+    height: 0.6rem !important;
+  }
+}
+
+/* 3. Hide tooltip on very small screens to avoid overlap */
+@media (max-width: 480px) {
+  #journey-progress-tooltip { display: none !important; }
+}
+
+/* 4. Improve tap target spacing for nav items inside mobile menu */
+@media (max-width: 640px) {
+  #primary-mobile-menu a { padding-top: 0.9rem; padding-bottom: 0.9rem; }
+}
+
+/* 5. Prevent accidental horizontal scroll */
+html, body, main#main-content { overflow-x: hidden; }
+
+/* 6. Fine-tune heading line-height if hero heading exists with class .hero-heading */
+@media (max-width: 640px) {
+  .hero-heading { line-height: 1.1; }
+}
+
+/* 7. Make form fields more comfortable on narrow screens */
+@media (max-width: 640px) {
+  form[data-netlify] input[type="text"],
+  form[data-netlify] input[type="email"],
+  form[data-netlify] textarea {
+    font-size: 1rem;
+  }
+}
+
+/* 8. Molecule formula badge adjustments to prevent distortion */
+.molecule-formula-badge span { display: inline-block; line-height: 1.05; }
+@media (max-width: 640px) {
+  .molecule-formula-badge { 
+    padding: 0.35rem 0.55rem !important;
+    font-size: 0.85rem; 
+    backdrop-filter: blur(4px);
+  }
+  .molecule-formula-badge span { font-size: 0.85rem; letter-spacing: 0.5px; }
+}
+
+/* Reduce motion preferences: stop subtle rotation in badge */
+@media (prefers-reduced-motion: reduce) {
+  .molecule-formula-badge { animation: none !important; }
+}

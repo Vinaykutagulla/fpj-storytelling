@@ -1,0 +1,15 @@
+// OPTION 4: No Pattern - Clean Gradient Only
+// Simply remove the entire SVG pattern div and keep just the background gradient:
+
+<motion.section
+  role="region"
+  aria-labelledby="opening-title"
+  className="relative min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 overflow-hidden"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 1 }}
+>
+  {/* No pattern - just clean gradient background */}
+  
+  {/* Content continues here... */}
+</motion.section>

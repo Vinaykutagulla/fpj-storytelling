@@ -1,0 +1,8 @@
+{
+  "name": "fpj-parent",
+  "scripts": {
+    "start": "cd fpj-storytelling && npm start",
+    "dev": "cd fpj-storytelling && npm start",
+    "build": "cd fpj-storytelling && npm install && npm run build"
+  }
+}
