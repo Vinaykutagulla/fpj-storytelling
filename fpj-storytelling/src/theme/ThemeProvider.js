@@ -66,7 +66,21 @@ export const ThemeProvider = ({ children }) => {
 
   const value = { theme, toggleTheme, setTheme };
 
-  // Prevent flashing unstyled content before theme resolved
+  // Sync theme-color meta (for mobile browser UI) when theme changes
+  useEffect(() => {
+    const lightColor = '#ffffff';
+    const darkColor = '#0d1117';
+    let meta = document.querySelector('meta[name="theme-color"][data-dynamic]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'theme-color';
+      meta.setAttribute('data-dynamic', 'true');
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', theme === THEMES.DARK ? darkColor : lightColor);
+  }, [theme]);
+
+  // Prevent flashing unstyled content before theme resolved (after all hooks)
   if (!mounted) {
     return <div style={{ visibility: 'hidden' }}>{children}</div>;
   }

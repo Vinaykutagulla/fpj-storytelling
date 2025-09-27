@@ -5,7 +5,10 @@
   <!-- Build: Tier1 Enhancements -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+  <!-- Inline theme preflight to prevent flash -->
+  <script>(function(){try{var s='fpj-theme';var e=localStorage.getItem(s);var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var t=e?e:(m?'dark':'light');if(t==='dark'){document.documentElement.classList.add('dark');} }catch(_){}})();</script>
     <meta name="description" content="Launch your pharmaceutical career: guidance, training, and mentoring from industry professionals. FirstPharmaJob helps students become confident life-science professionals." />
     <link rel="canonical" href="https://firstpharmajob.com/" />
   <link rel="me" href="https://www.linkedin.com/in/firstpharmajob" />

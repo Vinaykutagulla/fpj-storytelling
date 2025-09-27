@@ -87,3 +87,31 @@ This project includes several accessibility improvements beyond the default CRA 
 	- Lists are proper ul/li structures and key metrics use dl/dt/dd for improved semantics.
 
 If you add new sections or components, mirror these patterns to maintain an accessible experience.
+
+## Theme (Light / Dark Mode)
+
+The application supports a user-toggleable light/dark theme implemented with Tailwind's `dark` class strategy.
+
+Implementation highlights:
+
+- Tailwind config sets `darkMode: 'class'`.
+- `ThemeProvider` (`src/theme/ThemeProvider.js`) determines initial theme: localStorage value → system preference → default light.
+- User choice is persisted under localStorage key `fpj-theme`.
+- A no-flash inline script in `public/index.html` applies the stored/system theme before React loads to avoid visual flicker.
+- Components use `dark:` variants for backgrounds, borders, and text. Prefer semantic utility groupings (e.g., gradient backgrounds) instead of inline styles.
+- Mobile browser UI color is updated dynamically by a `meta[name="theme-color"]` tag injected/updated in `ThemeProvider`.
+- Smooth transitions for background/text/border colors respect `prefers-reduced-motion`.
+
+Adding dark styles to new components:
+1. Start with neutral light classes (e.g., `bg-white text-slate-700`).
+2. Layer dark variants: `dark:bg-slate-800 dark:text-slate-200`.
+3. For subtle surfaces, use translucent overlays: `dark:bg-slate-800/70`.
+4. Ensure contrast ratios (WCAG AA) for text vs. background; prefer `text-slate-200` over pure white on very dark backgrounds.
+5. Test focus states: focus rings are customized in `index.css` with an accessible blue outline in dark mode.
+
+To extend:
+- Add a third "System" mode: track a tri-state and re-evaluate media query on changes.
+- Add per-section accent tokens in Tailwind `theme.extend.colors` and reference via utilities instead of hex literals.
+- Provide animation opt-out (already partially covered by `prefers-reduced-motion`).
+
+If a component visually flashes wrong colors on first paint, confirm it renders after the `<html>` element has the correct class and that no inline style overrides the expected dark utility classes.
