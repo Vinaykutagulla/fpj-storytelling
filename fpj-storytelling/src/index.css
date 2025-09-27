@@ -35,3 +35,18 @@ html {
   outline: 2px solid #3b82f6 !important;
   outline-offset: 2px;
 }
+
+:root {
+  --logo-ring-start: #1d4ed8; /* blue-700 */
+  --logo-ring-end: #0f3f9e;   /* deeper blue */
+  --logo-accent: #06b6d4;     /* cyan */
+  --logo-tree: #0f172a;       /* slate-950 */
+  --logo-gold: #d8c28f;       /* heritage gold */
+}
+.dark {
+  --logo-ring-start: #06b6d4; /* cyan */
+  --logo-ring-end: #1d4ed8;   /* blue */
+  --logo-accent: #1d4ed8;     /* shift accent */
+  --logo-tree: #f1f5f9;       /* slate-100 */
+  --logo-gold: #d8c28f;       /* keep gold */
+}

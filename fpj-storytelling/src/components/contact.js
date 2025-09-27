@@ -11,6 +11,17 @@ const ContactPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErr = {};
+    if (!formData.name.trim()) newErr.name = 'Name is required';
+    if (!formData.email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) newErr.email = 'Valid email required';
+    if (formData.phone && !formData.phone.match(/^[+0-9()\-\s]{7,20}$/)) newErr.phone = 'Invalid phone format';
+    if (formData.message.length < 10) newErr.message = 'Message should be at least 10 characters';
+    setErrors(newErr);
+    return Object.keys(newErr).length === 0;
+  };
 
   const handleInputChange = (e) => {
     setFormData({
@@ -28,7 +39,8 @@ const ContactPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
+  if (!validate()) return;
+  setIsSubmitting(true);
 
     // Include form-name for Netlify static form processing
     const submission = {
@@ -57,29 +69,32 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+  <div className="min-h-screen bg-white dark:bg-slate-900 transition-colors">
       {/* Hero Section */}
-      <section className="relative pt-20 pb-20 px-6 bg-gradient-to-br from-blue-50 to-indigo-100">
+  <section className="relative pt-20 pb-20 px-6 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-800 dark:to-slate-900">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-cyan-400">
             Get In Touch
           </h1>
-          <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed">
             Ready to transform your pharmaceutical career? Let's discuss how we can help you achieve your professional goals.
           </p>
         </div>
       </section>
 
-      <section className="relative z-10 py-20 px-6">
+  <section className="relative z-10 py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h2 className="text-3xl font-bold text-gray-800 mb-8">Start Your Journey</h2>
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 transition-colors">
+              <h2 className="text-3xl font-bold text-gray-800 dark:text-slate-100 mb-8">Start Your Journey</h2>
               
+              <div aria-live="polite" className="sr-only" id="form-status-live">
+                {submitStatus === 'success' ? 'Form submitted successfully' : submitStatus === 'error' ? 'Submission failed' : ''}
+              </div>
               {submitStatus === 'success' && (
-                <div className="mb-6 p-4 bg-green-100 text-green-800 rounded-lg">
-                  Thank you for your submission! We'll get back to you soon.
+                <div className="mb-6 p-4 bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300 rounded-lg">
+                  Thank you! Your message has been sent. We will respond within 24 hours.
                 </div>
               )}
 
@@ -111,10 +126,11 @@ const ContactPage = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Your Name"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 ${errors.name ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'}`}
                     required
                     autoComplete="name"
                   />
+                  {errors.name && <p className="mt-1 text-xs text-red-600" role="alert">{errors.name}</p>}
                 </div>
                 <div>
                   <label htmlFor="contact-email" className="sr-only">Email</label>
@@ -125,10 +141,11 @@ const ContactPage = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="Your Email"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 ${errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'}`}
                     required
                     autoComplete="email"
                   />
+                  {errors.email && <p className="mt-1 text-xs text-red-600" role="alert">{errors.email}</p>}
                 </div>
                 <div>
                   <label htmlFor="contact-phone" className="sr-only">Phone</label>
@@ -139,9 +156,10 @@ const ContactPage = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder="Your Phone"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 ${errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'}`}
                     autoComplete="tel"
                   />
+                  {errors.phone && <p className="mt-1 text-xs text-red-600" role="alert">{errors.phone}</p>}
                 </div>
                 <div>
                   <label htmlFor="contact-service" className="sr-only">Service</label>
@@ -150,7 +168,7 @@ const ContactPage = () => {
                     name="service"
                     value={formData.service}
                     onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full p-3 border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="">Select a Service</option>
                     <option value="cdm">Clinical Data Management</option>
@@ -167,29 +185,30 @@ const ContactPage = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Your Message"
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={`w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 ${errors.message ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'}`}
                     rows="4"
                   ></textarea>
+                  {errors.message && <p className="mt-1 text-xs text-red-600" role="alert">{errors.message}</p>}
                 </div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition duration-300 disabled:bg-gray-400"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-cyan-500 text-white p-3 rounded-lg hover:from-blue-700 hover:to-purple-700 dark:hover:from-blue-400 dark:hover:to-cyan-400 transition duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
                   aria-busy={isSubmitting}
                 >
                   {isSubmitting ? 'Submitting...' : submitStatus === 'success' ? 'Sent!' : 'Send Message'}
                 </button>
                 {submitStatus === 'error' && (
-                  <div className="text-sm text-red-600">There was a problem sending your message. Please try again.</div>
+                  <div className="text-sm text-red-600" role="alert">There was a problem sending your message. Please try again.</div>
                 )}
               </form>
             </div>
 
             {/* Info Section */}
             <div>
-              <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Our Commitment</h3>
-                <ul className="space-y-4 text-gray-600">
+              <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 mb-8 transition-colors">
+                <h3 className="text-xl font-bold text-gray-800 dark:text-slate-100 mb-4">Our Commitment</h3>
+                <ul className="space-y-4 text-gray-600 dark:text-slate-300">
                   <li className="flex items-start gap-2">
                     <svg className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -211,12 +230,12 @@ const ContactPage = () => {
                 </ul>
               </div>
 
-              <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Quick Response Promise</h3>
-                <p className="text-gray-600 mb-4">
+              <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 transition-colors">
+                <h3 className="text-xl font-bold text-gray-800 dark:text-slate-100 mb-4">Quick Response Promise</h3>
+                <p className="text-gray-600 dark:text-slate-300 mb-4">
                   We understand that timing is crucial in career decisions. Our team commits to responding to all inquiries within 24 hours.
                 </p>
-                <div className="flex items-center gap-2 text-blue-600">
+                <div className="flex items-center gap-2 text-blue-600 dark:text-cyan-400">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
@@ -251,7 +270,7 @@ const ContactPage = () => {
                       WhatsApp
                     </a>
                   </div>
-                  <p className="text-xs text-gray-500">WhatsApp number: +91 91005 14968</p>
+                  <p className="text-xs text-gray-500 dark:text-slate-400">WhatsApp number: +91 91005 14968</p>
                 </div>
               </div>
             </div>

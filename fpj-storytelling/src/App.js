@@ -2,20 +2,19 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import { useTheme } from './theme/ThemeProvider';
 import { motion, AnimatePresence } from "framer-motion";
-
-// Import page components
-import ServicesPage from './components/Services';
-import ContactPage from './components/contact';
-import AboutPage from './components/About';
 import ScrollToTop from './components/ScrollToTop';
-
-// Import section components
 import LaunchSection from './components/LaunchSection';
 import OpeningSection from './components/OpeningSection';
 import PreclinicalSection from './components/PreclinicalSection';
 import ClinicalSection from './components/ClinicalSection';
 import RegulatorySection from './components/RegulatorySection';
 import ManufacturingSection from './components/ManufacturingSection';
+import LogoMark from './components/LogoMark';
+
+// Route-split secondary pages (after all static imports for ESLint compliance)
+const ServicesPage = React.lazy(() => import('./components/Services'));
+const ContactPage = React.lazy(() => import('./components/contact'));
+const AboutPage = React.lazy(() => import('./components/About'));
 
 
 // Navigation Component
@@ -36,7 +35,21 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <MetamorphosisLogo size={56} />
+          <Link to="/" className="flex items-center gap-4 select-none group pr-2">
+            <div className="relative">
+              <LogoMark size={56} />
+              {/* Glow on hover */}
+              <div className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500" style={{background:'radial-gradient(circle at center,var(--logo-ring-start)20%,transparent 70%)'}} />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-2xl tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-slate-800 to-slate-600 dark:from-slate-100 dark:to-slate-300 group-hover:from-blue-600 group-hover:to-cyan-500 transition-colors duration-300">
+                FirstPharmaJob
+              </span>
+              <span className="text-sm text-slate-500 dark:text-slate-400 font-medium -mt-0.5">
+                Students to Professionals
+              </span>
+            </div>
+          </Link>
           
           {/* Desktop Navigation */}
           <div className="hidden md:block">
@@ -162,30 +175,7 @@ const Navigation = () => {
   );
 };
 
-// Simple Minimalist Logo - Instagram Style
-const MetamorphosisLogo = ({ size = 64 }) => {
-  return (
-    <Link to="/" className="flex items-center gap-4 select-none hover:opacity-90 transition-all duration-300 group">
-      {/* Refined Logo Mark */}
-      <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
-        <div className="relative">
-          <span className="text-white text-lg font-bold tracking-tight">FPJ</span>
-          <div className="absolute -inset-0.5 bg-white/20 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </div>
-      </div>
-      
-      {/* Enhanced Brand Text */}
-      <div className="flex flex-col">
-        <span className="font-bold text-2xl tracking-tight text-slate-800 group-hover:text-blue-700 transition-colors duration-300">
-          FirstPharmaJob
-        </span>
-        <p className="text-sm text-slate-500 font-medium -mt-0.5">
-          Students to Professionals
-        </p>
-      </div>
-    </Link>
-  );
-};
+// (Old MetamorphosisLogo component removed in favor of new LogoMark integration)
 
 
 // Beautiful Floating Circular Progress Indicator
@@ -553,12 +543,14 @@ function App() {
     <Router>
       <ScrollToTop />
       <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-        </Routes>
+        <React.Suspense fallback={<div className="py-32 text-center text-slate-500">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Routes>
+        </React.Suspense>
       </Layout>
     </Router>
   );
