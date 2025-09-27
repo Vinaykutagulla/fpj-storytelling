@@ -49,16 +49,7 @@ const OpeningSection = () => {
     <motion.div 
       role="region"
       aria-labelledby="opening-heading"
-      className="w-full min-h-[70vh] flex items-start relative pt-12 sm:pt-16 lg:pt-20 pb-4 sm:pb-6 lg:pb-8"
-      style={{
-        background: `
-          linear-gradient(135deg, 
-            #dbeafe 0%, 
-            #e0e7ff 50%, 
-            #f0f4ff 100%
-          )
-        `
-      }}
+      className="w-full min-h-[70vh] flex items-start relative pt-12 sm:pt-16 lg:pt-20 pb-4 sm:pb-6 lg:pb-8 bg-gradient-to-br from-blue-100 via-indigo-100 to-slate-100 dark:from-[#0f172a] dark:via-[#111c30] dark:to-[#0f172a]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2 }}
@@ -79,7 +70,7 @@ const OpeningSection = () => {
               {/* Main Headline */}
               <h1 className="text-[1.85rem] leading-[2.2rem] md:text-4xl lg:text-5xl font-bold tracking-tight">
                 <motion.span 
-                  className="block text-slate-800"
+                  className="block text-slate-800 dark:text-slate-100"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.7 }}
@@ -102,11 +93,11 @@ const OpeningSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.1 }}
               >
-                <p className="text-lg text-slate-600 leading-relaxed mb-3">
+                <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
                   Follow the incredible path from laboratory discovery to life-saving medicine.
                 </p>
-                <p className="text-base text-slate-500">
-                  At <span className="text-blue-700 font-medium">FirstPharmaJob</span>, students learn by following this same journey—building skills that matter in the real world of pharmaceutical development.
+                <p className="text-base text-slate-500 dark:text-slate-400">
+                  At <span className="text-blue-700 dark:text-blue-400 font-medium">FirstPharmaJob</span>, students learn by following this same journey—building skills that matter in the real world of pharmaceutical development.
                 </p>
               </motion.div>
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
+import { useTheme } from './theme/ThemeProvider';
 import { motion, AnimatePresence } from "framer-motion";
 
 // Import page components
@@ -20,6 +21,7 @@ import ManufacturingSection from './components/ManufacturingSection';
 // Navigation Component
 const Navigation = () => {
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
@@ -30,7 +32,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav role="navigation" aria-label="Primary" className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/50 shadow-sm">
+  <nav role="navigation" aria-label="Primary" className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-700 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -38,7 +40,7 @@ const Navigation = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-8">
+            <div className="ml-10 flex items-center space-x-6">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.path;
                 return (
@@ -47,8 +49,8 @@ const Navigation = () => {
                     to={item.path}
                     className={`relative px-4 py-3 text-base font-medium transition-all duration-300 rounded-lg ${
                       isActive
-                        ? 'text-blue-600 bg-blue-50'
-                        : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
+                        ? 'text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-slate-800'
+                        : 'text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-700'
                     }`}
                     aria-current={isActive ? 'page' : undefined}
                   >
@@ -60,6 +62,23 @@ const Navigation = () => {
                   </Link>
                 );
               })}
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                type="button"
+                aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                className="relative inline-flex items-center justify-center w-11 h-11 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {theme === 'dark' ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                    <path d="M12 18a1 1 0 0 1 1 1v1.25a.75.75 0 0 1-1.5 0V19a1 1 0 0 1 1-1Zm6.364-2.05 1.102 1.102a.75.75 0 0 1-1.06 1.06l-1.102-1.1a1 1 0 0 1 1.06-1.06ZM6.343 5.636a1 1 0 0 1-1.06 1.06L4.182 5.595a.75.75 0 0 1 1.06-1.06l1.102 1.1ZM12 6.5A5.5 5.5 0 1 0 12 17a5.5 5.5 0 0 0 0-11Zm8.25 4.25a.75.75 0 0 1 0 1.5H19a1 1 0 0 1 0-2h1.25ZM5 12a1 1 0 0 1-1 1H2.75a.75.75 0 0 1 0-1.5H4A1 1 0 0 1 5 12Zm13.778-6.182-1.102 1.102a1 1 0 0 1-1.06-1.06l1.1-1.102a.75.75 0 0 1 1.06 1.06ZM7.94 17.01a1 1 0 0 1 0 1.414l-1.1 1.102a.75.75 0 0 1-1.06-1.06l1.1-1.102a1 1 0 0 1 1.06-.354Z" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                    <path d="M11.286 2.1a.75.75 0 0 1 .97-.82 10 10 0 1 1-8.336 13.095.75.75 0 0 1 .555-.986 7.501 7.501 0 0 0 5.632-5.632.75.75 0 0 1 .52-.545 7 7 0 0 0 .66-.212Z" />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
 
@@ -67,7 +86,7 @@ const Navigation = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="inline-flex items-center justify-center p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               aria-expanded={isMenuOpen}
               aria-controls="primary-mobile-menu"
             >
@@ -97,7 +116,7 @@ const Navigation = () => {
             className="md:hidden"
             id="primary-mobile-menu"
           >
-            <div className="px-4 pt-4 pb-6 space-y-2 bg-white/98 backdrop-blur-md border-t border-slate-200">
+            <div className="px-4 pt-4 pb-6 space-y-2 bg-white/98 dark:bg-slate-800/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-700">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.path;
                 return (
@@ -107,8 +126,8 @@ const Navigation = () => {
                     onClick={() => setIsMenuOpen(false)}
                     className={`block px-4 py-3 text-lg font-medium rounded-lg transition-all duration-300 ${
                       isActive
-                        ? 'text-blue-600 bg-blue-50'
-                        : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
+                        ? 'text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-slate-800'
+                        : 'text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-700'
                     }`}
                     aria-current={isActive ? 'page' : undefined}
                   >
@@ -116,6 +135,25 @@ const Navigation = () => {
                   </Link>
                 );
               })}
+              <div className="pt-2">
+                <button
+                  onClick={toggleTheme}
+                  type="button"
+                  aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                  className="mt-2 w-full inline-flex items-center gap-3 px-5 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {theme === 'dark' ? (
+                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-5 h-5'>
+                      <path d='M12 18a1 1 0 0 1 1 1v1.25a.75.75 0 0 1-1.5 0V19a1 1 0 0 1 1-1Zm6.364-2.05 1.102 1.102a.75.75 0 0 1-1.06 1.06l-1.102-1.1a1 1 0 0 1 1.06-1.06ZM6.343 5.636a1 1 0 0 1-1.06 1.06L4.182 5.595a.75.75 0 0 1 1.06-1.06l1.102 1.1ZM12 6.5A5.5 5.5 0 1 0 12 17a5.5 5.5 0 0 0 0-11Zm8.25 4.25a.75.75 0 0 1 0 1.5H19a1 1 0 0 1 0-2h1.25ZM5 12a1 1 0 0 1-1 1H2.75a.75.75 0 0 1 0-1.5H4A1 1 0 0 1 5 12Zm13.778-6.182-1.102 1.102a1 1 0 0 1-1.06-1.06l1.1-1.102a.75.75 0 0 1 1.06 1.06ZM7.94 17.01a1 1 0 0 1 0 1.414l-1.1 1.102a.75.75 0 0 1-1.06-1.06l1.1-1.102a1 1 0 0 1 1.06-.354Z' />
+                    </svg>
+                  ) : (
+                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-5 h-5'>
+                      <path d='M11.286 2.1a.75.75 0 0 1 .97-.82 10 10 0 1 1-8.336 13.095.75.75 0 0 1 .555-.986 7.501 7.501 0 0 0 5.632-5.632.75.75 0 0 1 .52-.545 7 7 0 0 0 .66-.212Z' />
+                    </svg>
+                  )}
+                  <span className="text-sm font-medium">{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
@@ -194,7 +232,7 @@ const FloatingProgressIndicator = ({ items, activeId }) => {
 
   return (
     <motion.div 
-      className="floating-progress-portal hidden sm:block fixed right-3 lg:right-6 top-1/2 transform -translate-y-1/2 z-50"
+  className="floating-progress-portal hidden sm:block fixed right-3 lg:right-6 top-1/2 transform -translate-y-1/2 z-50"
       initial={{ opacity: 0, x: 100 }}
       animate={{ 
         opacity: isVisible ? 1 : 0.6,
@@ -218,7 +256,7 @@ const FloatingProgressIndicator = ({ items, activeId }) => {
       >
         <span className="sr-only">{`Journey progress: ${activeIndex + 1} of ${items.length} sections (${Math.round(progress)}%)`}</span>
         {/* Background circle */}
-        <div className="absolute inset-0 rounded-full bg-black/40 backdrop-blur-md border border-white/25 shadow-2xl">
+  <div className="absolute inset-0 rounded-full bg-black/40 dark:bg-slate-800/70 backdrop-blur-md border border-white/25 dark:border-slate-600 shadow-2xl transition-colors">
         </div>
         
         {/* Progress ring */}
@@ -251,7 +289,7 @@ const FloatingProgressIndicator = ({ items, activeId }) => {
         </svg>
         
         {/* Center content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+  <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
           <div 
             className="text-xl font-bold"
             style={{ color: currentColor }}
@@ -272,7 +310,7 @@ const FloatingProgressIndicator = ({ items, activeId }) => {
               exit={{ opacity: 0, x: 20 }}
               transition={{ delay: 0.5 }}
             >
-              <div className="bg-black/90 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap border border-white/20">
+              <div className="bg-black/90 dark:bg-slate-800/90 backdrop-blur-sm text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap border border-white/20 dark:border-slate-600 transition-colors">
                 <div style={{ color: currentColor }} className="font-medium">
                   {items[activeIndex]?.title || 'Journey'}
                 </div>
@@ -445,7 +483,7 @@ const Layout = ({ children }) => {
         Skip to content
       </a>
       {/* Clean background */}
-      <div className="fixed inset-0 bg-white"></div>
+  <div className="fixed inset-0 bg-white dark:bg-fpj-bg-dark transition-colors"></div>
 
       {/* Navigation */}
       <Navigation />
@@ -471,12 +509,12 @@ const Footer = () => {
     }
   };
   return (
-    <footer className="bg-slate-50 border-t border-slate-200 mt-auto relative z-20">
+  <footer className="bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 mt-auto relative z-20 transition-colors">
       <div className="max-w-7xl mx-auto px-6 py-10 md:py-12">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <p className="text-slate-700 font-semibold">FirstPharmaJob</p>
-            <p className="text-slate-500 text-sm mt-1">Guiding students into pharmaceutical careers.</p>
+            <p className="text-slate-700 dark:text-slate-200 font-semibold">FirstPharmaJob</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Guiding students into pharmaceutical careers.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <a
@@ -503,7 +541,7 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="mt-8 text-xs text-slate-400">&copy; {new Date().getFullYear()} FirstPharmaJob. All rights reserved.</div>
+  <div className="mt-8 text-xs text-slate-400 dark:text-slate-500">&copy; {new Date().getFullYear()} FirstPharmaJob. All rights reserved.</div>
       </div>
     </footer>
   );

@@ -7,15 +7,15 @@ const ManufacturingSection = () => {
     <motion.div 
       role="region" 
       aria-labelledby="manufacturing-heading" 
-      className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50 flex items-center relative overflow-hidden" 
+  className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50 dark:from-[#2c1905] dark:to-[#2d2109] flex items-center relative overflow-hidden" 
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }} 
       transition={{ duration: 0.6 }}
     >
       <div className="container mx-auto px-4 py-16 relative">
         <motion.div className="text-center mb-16" initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
-          <h2 id="manufacturing-heading" className="text-5xl font-bold text-slate-800 mb-6">Making Millions</h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">When one tiny lab process must become millions of perfect doses</p>
+          <h2 id="manufacturing-heading" className="text-5xl font-bold text-slate-800 dark:text-slate-100 mb-6">Making Millions</h2>
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">When one tiny lab process must become millions of perfect doses</p>
         </motion.div>
 
         {/* Story Content */}
@@ -37,17 +37,17 @@ const ManufacturingSection = () => {
                 </div>
               </div>
               
-              <p className="text-lg text-slate-700 leading-relaxed mb-6">
+              <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
                 The recipe that worked for <strong>100 doses in a lab</strong> must now produce millions. Every step gets redesigned. Bigger equipment, stricter standards, zero room for error. One batch can supply thousands of patients—or if something goes wrong, put them at risk.
               </p>
               
-              <div className="bg-orange-50 rounded-xl p-6 mb-6">
-                <p className="text-slate-700 italic">
+              <div className="bg-orange-50 dark:bg-orange-900/30 rounded-xl p-6 mb-6">
+                <p className="text-slate-700 dark:text-slate-300 italic">
                   "FPJ students learn manufacturing excellence—quality systems, process optimization, and supply chain management skills that turn them into the production leaders pharmaceutical companies need to scale reliably."
                 </p>
               </div>
               
-              <p className="text-lg text-slate-700 leading-relaxed">
+              <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
                 It takes <strong>2-3 years</strong> to scale from approval to full production. But once running, a single facility can produce medicine for millions of patients worldwide—and employ hundreds of skilled professionals.
               </p>
             </div>

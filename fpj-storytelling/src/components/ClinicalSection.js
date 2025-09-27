@@ -8,7 +8,7 @@ const ClinicalSection = () => {
       role="region"
       aria-labelledby="clinical-heading"
       id="clinical"
-      className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-50 flex items-center relative overflow-hidden"
+  className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-[#1f1631] dark:to-[#121a2e] flex items-center relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -16,8 +16,8 @@ const ClinicalSection = () => {
       <div className="container mx-auto px-4 py-16 relative">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 id="clinical-heading" className="text-5xl font-bold text-slate-800 mb-6">First Human Tests</h2>
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+          <h2 id="clinical-heading" className="text-5xl font-bold text-slate-800 dark:text-slate-100 mb-6">First Human Tests</h2>
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed">
             After years of lab work, the moment of truth arrives: testing in real people. It's a careful, methodical process that can take a decade—and where pharmaceutical careers are truly made.
           </p>
         </div>
@@ -41,17 +41,17 @@ const ClinicalSection = () => {
                 </div>
               </div>
               
-              <p className="text-lg text-slate-700 leading-relaxed mb-6">
+              <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
                 The journey from lab to patient is long and careful. It starts with just <strong>20-100 brave volunteers</strong> who help test safety. If successful, hundreds more join to test effectiveness. Finally, thousands participate to prove the medicine works better than existing treatments.
               </p>
               
-              <div className="bg-purple-50 rounded-xl p-6 mb-6">
-                <p className="text-slate-700 italic">
+              <div className="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-6 mb-6">
+                <p className="text-slate-700 dark:text-slate-300 italic">
                   "This is where FPJ students shine—learning clinical research principles, regulatory requirements, and data analysis skills that pharmaceutical companies desperately need for their clinical teams."
                 </p>
               </div>
               
-              <p className="text-lg text-slate-700 leading-relaxed">
+              <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
                 Only <strong>1 in 4 medicines</strong> that enter clinical trials ever reach patients. It takes 10-15 years and costs hundreds of millions of dollars. But when it works, lives are saved—and careers are launched.
               </p>
             </div>
