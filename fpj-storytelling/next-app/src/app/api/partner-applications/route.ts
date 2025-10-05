@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { supabaseAdmin, hasSupabase } from '@/lib/supabaseAdmin';
 import { logger } from '@/lib/logger';
 import { memoryStore, metrics, type ApplicationRecord } from '@/lib/applicationStore';
+import { generateReferralCode, sendApprovalEmail } from '@/lib/applicationUtils';
 
 // Rate limiting (very basic, in-memory): key = ip, value = timestamps
 const requestLog: Record<string, number[]> = {};
@@ -35,6 +36,10 @@ export async function POST(req: Request) {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
     }
+
+    // Generate referral code immediately for auto-approval
+    const referralCode = generateReferralCode(data.name.trim(), data.email.trim());
+
     const record: ApplicationRecord = {
       id: crypto.randomUUID(),
       name: data.name.trim(),
@@ -47,8 +52,11 @@ export async function POST(req: Request) {
       instagram: data.instagram?.trim() || undefined,
       linkedin: data.linkedin?.trim() || undefined,
       referrals: data.referrals?.trim() || undefined,
-      referralCode: data.referralCode?.trim() || undefined,
-      createdAt: new Date().toISOString()
+      referralCode: referralCode, // Auto-generated referral code
+      createdAt: new Date().toISOString(),
+      status: 'approved', // Auto-approve all applications
+      approvalDate: new Date().toISOString(),
+      adminNotes: 'Auto-approved upon submission'
     };
     metrics.total++;
     if (hasSupabase && supabaseAdmin) {
@@ -66,7 +74,10 @@ export async function POST(req: Request) {
           instagram: record.instagram,
           linkedin: record.linkedin,
           referrals: record.referrals,
-          referral_code: record.referralCode
+          referral_code: record.referralCode,
+          status: record.status,
+          approval_date: record.approvalDate,
+          admin_notes: record.adminNotes
         });
       if (error) {
         console.error('Supabase insert error', error);
@@ -74,15 +85,46 @@ export async function POST(req: Request) {
         memoryStore.push(record);
         metrics.fallback++;
         logger.error('supabase_insert_failed', { id: record.id, error: error.message });
-        return NextResponse.json({ ok: true, id: record.id, persisted: false, fallback: 'memory' });
+        
+        // Still send email for fallback
+        await sendApprovalEmail(record.email, record.name, record.referralCode!);
+        
+        return NextResponse.json({ 
+          ok: true, 
+          id: record.id, 
+          referralCode: record.referralCode,
+          persisted: false, 
+          fallback: 'memory',
+          message: 'Application approved! Check your email for referral code.'
+        });
       }
       metrics.persisted++;
+      
+      // Send approval email
+      await sendApprovalEmail(record.email, record.name, record.referralCode!);
+      
       logger.info('application_created', { id: record.id, persisted: true, referral: record.referralCode });
-      return NextResponse.json({ ok: true, id: record.id, persisted: true });
+      return NextResponse.json({ 
+        ok: true, 
+        id: record.id, 
+        referralCode: record.referralCode,
+        persisted: true,
+        message: 'Application approved! Check your email for referral code.'
+      });
     } else {
       memoryStore.push(record);
+      
+      // Send approval email
+      await sendApprovalEmail(record.email, record.name, record.referralCode!);
+      
       logger.info('application_created', { id: record.id, persisted: false, referral: record.referralCode });
-      return NextResponse.json({ ok: true, id: record.id, persisted: false });
+      return NextResponse.json({ 
+        ok: true, 
+        id: record.id, 
+        referralCode: record.referralCode,
+        persisted: false,
+        message: 'Application approved! Check your email for referral code.'
+      });
     }
   } catch (e: any) {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });

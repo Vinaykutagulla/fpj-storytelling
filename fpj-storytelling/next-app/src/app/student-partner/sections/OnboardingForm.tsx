@@ -22,6 +22,8 @@ export default function OnboardingForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState<string|null>(null);
+  const [referralCode, setReferralCode] = useState<string|null>(null);
+  const [successMessage, setSuccessMessage] = useState<string|null>(null);
 
   function validate() {
     const e: typeof errors = {};
@@ -62,6 +64,10 @@ export default function OnboardingForm() {
         setServerError(body.error || 'Submission failed');
         return;
       }
+      
+      const response = await res.json();
+      setReferralCode(response.referralCode || null);
+      setSuccessMessage(response.message || 'Application submitted successfully!');
       setSubmitted(true);
       setForm(initial);
     } catch (e:any) {
@@ -73,11 +79,40 @@ export default function OnboardingForm() {
 
   if (submitted) {
     return (
-      <section id="apply" className="py-24 bg-gradient-to-br from-blue-50 to-sky-50 dark:from-slate-900 dark:to-slate-800">
+      <section id="apply" className="py-24 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-slate-900 dark:to-slate-800">
         <div className="max-w-xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-4">Application Received</h2>
-          <p className="text-slate-600 dark:text-slate-300 mb-6">Thank you for applying! We will review your submission and respond within 24–48 hours.</p>
-          <button onClick={()=>setSubmitted(false)} className="px-6 py-3 rounded-lg font-medium bg-blue-600 text-white hover:bg-blue-700 transition">Submit Another</button>
+          <div className="mb-6">
+            <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-4">🎉 Welcome to FirstPharmaJob!</h2>
+            <p className="text-slate-600 dark:text-slate-300 mb-6">{successMessage}</p>
+            
+            {referralCode && (
+              <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-green-200 dark:border-green-800 mb-6">
+                <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-2">Your Referral Code</h3>
+                <div className="text-2xl font-mono font-bold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 px-4 py-2 rounded border">
+                  {referralCode}
+                </div>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
+                  Use this code to refer students and earn rewards! 📧 Check your email for more details.
+                </p>
+              </div>
+            )}
+          </div>
+          
+          <button 
+            onClick={() => {
+              setSubmitted(false);
+              setReferralCode(null);
+              setSuccessMessage(null);
+            }} 
+            className="px-6 py-3 rounded-lg font-medium bg-blue-600 text-white hover:bg-blue-700 transition"
+          >
+            Submit Another Application
+          </button>
         </div>
       </section>
     );

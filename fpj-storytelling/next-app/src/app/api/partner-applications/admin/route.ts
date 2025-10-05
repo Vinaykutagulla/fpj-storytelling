@@ -2,16 +2,9 @@ import { NextResponse } from 'next/server';
 import { supabaseAdmin, hasSupabase } from '@/lib/supabaseAdmin';
 import { headers } from 'next/headers';
 import { memoryStore, type ApplicationRecord } from '@/lib/applicationStore';
+import { generateReferralCode, sendApprovalEmail } from '@/lib/applicationUtils';
 
 // NOTE: For production move to stricter auth (JWT, Clerk, etc.)
-
-const generateReferralCode = (name: string, email: string): string => {
-  // Generate unique referral code: FPJ + initials + random 4 digits
-  const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
-  const emailCode = email.split('@')[0].slice(0, 2).toUpperCase();
-  const randomNum = Math.floor(1000 + Math.random() * 9000);
-  return `FPJ${initials}${emailCode}${randomNum}`;
-};
 
 const validateAuth = () => {
   const h = headers();
