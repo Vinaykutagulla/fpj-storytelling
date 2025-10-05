@@ -22,8 +22,6 @@ export default function OnboardingForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState<string|null>(null);
-  // Earnings estimator state
-  const [referralsEst, setReferralsEst] = useState(10);
 
   function validate() {
     const e: typeof errors = {};
@@ -95,16 +93,6 @@ export default function OnboardingForm() {
     return <textarea {...props} value={(form[k] as any)||''} onChange={e=>setForm(f=>({...f,[k]:e.target.value}))} className={field + ' min-h-[160px] resize-y' + (errors[k]? ' ring-2 ring-red-500 border-red-500':'')} />;
   }
 
-  // Earnings estimator calculation
-  function estimatedPayout(n:number) {
-    // Simplistic tier logic aligned with levels
-    if (n <= 5) return n * 500;
-    if (n <= 15) return (5*500) + (n-5)*750;
-    if (n <= 30) return (5*500) + (10*750) + (n-15)*1000;
-    // 31+ assume 1500 each beyond 30
-    return (5*500) + (10*750) + (15*1000) + (n-30)*1500;
-  }
-
   return (
     <section id="apply" className="py-24 bg-white dark:bg-slate-950">
       <div className="max-w-4xl mx-auto px-6">
@@ -161,13 +149,6 @@ export default function OnboardingForm() {
             <div className="hidden" aria-hidden="true">
               {input('website',{ tabIndex:-1, autoComplete:'off' })}
             </div>
-          </div>
-          <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-5 bg-slate-50 dark:bg-slate-900/30">
-            <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-3">Earnings Estimator (Preview)</h3>
-            <label className="block text-xs font-medium mb-1 text-slate-500 dark:text-slate-400">Projected monthly qualified referrals</label>
-            <input type="range" min={1} max={60} value={referralsEst} onChange={e=>setReferralsEst(Number(e.target.value))} className="w-full" />
-            <div className="mt-2 flex justify-between text-xs text-slate-500 dark:text-slate-400"><span>{referralsEst}</span><span>₹{estimatedPayout(referralsEst).toLocaleString()}</span></div>
-            <p className="mt-2 text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">Approximate payout based on tiered structure (excludes bonuses). Actual validation & performance reviews apply.</p>
           </div>
           <div className="flex flex-col gap-2 text-xs text-slate-500 dark:text-slate-400" id="apply-help">
             {serverError && <span className="text-red-600" role="alert">{serverError}</span>}
