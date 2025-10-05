@@ -1,31 +1,12 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin, hasSupabase } from '@/lib/supabaseAdmin';
 import { logger } from '@/lib/logger';
+import { memoryStore, metrics, type ApplicationRecord } from '@/lib/applicationStore';
 
-interface ApplicationRecord {
-  id: string;
-  name: string;
-  email: string;
-  institution: string;
-  year: string;
-  motivation: string;
-  phone?: string;
-  course?: string;
-  instagram?: string;
-  linkedin?: string;
-  referrals?: string;
-  referralCode?: string;
-  createdAt: string;
-}
-
-// In-memory store (ephemeral). Replace with DB (e.g., Supabase) later.
-const store: ApplicationRecord[] = [];
 // Rate limiting (very basic, in-memory): key = ip, value = timestamps
 const requestLog: Record<string, number[]> = {};
 const WINDOW_MS = 60_000; // 1 minute
 const MAX_REQ = 5; // max submissions per minute per IP
-
-let metrics = { total: 0, spam: 0, rateLimited: 0, persisted: 0, fallback: 0 };
 
 export async function POST(req: Request) {
   try {
@@ -90,7 +71,7 @@ export async function POST(req: Request) {
       if (error) {
         console.error('Supabase insert error', error);
         // Fallback to memory so application not lost
-        store.push(record);
+        memoryStore.push(record);
         metrics.fallback++;
         logger.error('supabase_insert_failed', { id: record.id, error: error.message });
         return NextResponse.json({ ok: true, id: record.id, persisted: false, fallback: 'memory' });
@@ -99,7 +80,7 @@ export async function POST(req: Request) {
       logger.info('application_created', { id: record.id, persisted: true, referral: record.referralCode });
       return NextResponse.json({ ok: true, id: record.id, persisted: true });
     } else {
-      store.push(record);
+      memoryStore.push(record);
       logger.info('application_created', { id: record.id, persisted: false, referral: record.referralCode });
       return NextResponse.json({ ok: true, id: record.id, persisted: false });
     }
@@ -109,5 +90,5 @@ export async function POST(req: Request) {
 }
 
 export async function GET() {
-  return NextResponse.json({ count: store.length, metrics });
+  return NextResponse.json({ count: memoryStore.length, metrics });
 }

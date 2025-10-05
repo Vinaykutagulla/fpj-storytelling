@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin, hasSupabase } from '@/lib/supabaseAdmin';
 import { headers } from 'next/headers';
+import { memoryStore, type ApplicationRecord } from '@/lib/applicationStore';
 
 // NOTE: For production move to stricter auth (JWT, Clerk, etc.)
 
@@ -33,7 +34,12 @@ export async function GET() {
     if (error) return NextResponse.json({ error: 'DB error' }, { status: 500 });
     return NextResponse.json({ source: 'supabase', count: data?.length || 0, items: data });
   }
-  return NextResponse.json({ source: 'memory', note: 'In-memory store not exposed in admin endpoint without Supabase.' });
+  // Fallback to memory store
+  return NextResponse.json({ 
+    source: 'memory', 
+    count: memoryStore.length, 
+    items: memoryStore.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()) 
+  });
 }
 
 export async function POST(req: Request) {
@@ -49,66 +55,107 @@ export async function POST(req: Request) {
     }
 
     if (action === 'approve') {
-      // Get application details
-      const { data: app, error: fetchError } = await supabaseAdmin
-        .from('partner_applications')
-        .select('name, email')
-        .eq('id', applicationId)
-        .single();
+      if (hasSupabase && supabaseAdmin) {
+        // Supabase workflow
+        const { data: app, error: fetchError } = await supabaseAdmin
+          .from('partner_applications')
+          .select('name, email')
+          .eq('id', applicationId)
+          .single();
 
-      if (fetchError || !app) {
-        return NextResponse.json({ error: 'Application not found' }, { status: 404 });
-      }
+        if (fetchError || !app) {
+          return NextResponse.json({ error: 'Application not found' }, { status: 404 });
+        }
 
-      // Generate referral code
-      const referralCode = generateReferralCode(app.name, app.email);
+        // Generate referral code
+        const referralCode = generateReferralCode(app.name, app.email);
 
-      // Update application status
-      const { error: updateError } = await supabaseAdmin
-        .from('partner_applications')
-        .update({
+        // Update application status
+        const { error: updateError } = await supabaseAdmin
+          .from('partner_applications')
+          .update({
+            status: 'approved',
+            referral_code: referralCode,
+            approval_date: new Date().toISOString(),
+            admin_notes: 'Approved and referral code generated'
+          })
+          .eq('id', applicationId);
+
+        if (updateError) {
+          return NextResponse.json({ error: 'Failed to update application' }, { status: 500 });
+        }
+
+        return NextResponse.json({ 
+          success: true, 
+          referralCode,
+          message: 'Application approved and referral code generated'
+        });
+      } else {
+        // Memory store workflow
+        const appIndex = memoryStore.findIndex(app => app.id === applicationId);
+        if (appIndex === -1) {
+          return NextResponse.json({ error: 'Application not found' }, { status: 404 });
+        }
+
+        const app = memoryStore[appIndex];
+        const referralCode = generateReferralCode(app.name, app.email);
+
+        // Update application in memory
+        memoryStore[appIndex] = {
+          ...app,
           status: 'approved',
-          referral_code: referralCode,
-          approval_date: new Date().toISOString(),
-          admin_notes: 'Approved and referral code generated'
-        })
-        .eq('id', applicationId);
+          referralCode,
+          approvalDate: new Date().toISOString(),
+          adminNotes: 'Approved and referral code generated'
+        };
 
-      if (updateError) {
-        return NextResponse.json({ error: 'Failed to update application' }, { status: 500 });
+        return NextResponse.json({ 
+          success: true, 
+          referralCode,
+          message: 'Application approved and referral code generated (memory store)'
+        });
       }
-
-      // TODO: Send approval email with referral code
-      // await sendApprovalEmail(app.email, app.name, referralCode);
-
-      return NextResponse.json({ 
-        success: true, 
-        referralCode,
-        message: 'Application approved and referral code generated'
-      });
     }
 
     if (action === 'reject') {
-      const { error: updateError } = await supabaseAdmin
-        .from('partner_applications')
-        .update({
+      if (hasSupabase && supabaseAdmin) {
+        const { error: updateError } = await supabaseAdmin
+          .from('partner_applications')
+          .update({
+            status: 'rejected',
+            admin_notes: reason || 'Application rejected',
+            rejection_date: new Date().toISOString()
+          })
+          .eq('id', applicationId);
+
+        if (updateError) {
+          return NextResponse.json({ error: 'Failed to update application' }, { status: 500 });
+        }
+
+        return NextResponse.json({ 
+          success: true,
+          message: 'Application rejected'
+        });
+      } else {
+        // Memory store workflow
+        const appIndex = memoryStore.findIndex(app => app.id === applicationId);
+        if (appIndex === -1) {
+          return NextResponse.json({ error: 'Application not found' }, { status: 404 });
+        }
+
+        // Update application in memory
+        memoryStore[appIndex] = {
+          ...memoryStore[appIndex],
           status: 'rejected',
-          admin_notes: reason || 'Application rejected',
-          rejection_date: new Date().toISOString()
-        })
-        .eq('id', applicationId);
+          adminNotes: reason || 'Application rejected',
+          rejectionDate: new Date().toISOString()
+        };
 
-      if (updateError) {
-        return NextResponse.json({ error: 'Failed to update application' }, { status: 500 });
+        return NextResponse.json({ 
+          success: true,
+          message: 'Application rejected (memory store)'
+        });
       }
-
-      // TODO: Send rejection email
-      // await sendRejectionEmail(app.email, app.name, reason);
-
-      return NextResponse.json({ 
-        success: true,
-        message: 'Application rejected'
-      });
     }
 
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
