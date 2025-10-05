@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "name": "fpj-storytelling",
+  "buildCommand": "cd fpj-storytelling/next-app && npm run build",
+  "outputDirectory": "fpj-storytelling/next-app/.next",
+  "installCommand": "cd fpj-storytelling/next-app && npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "NEXT_PUBLIC_SITE_URL": "https://fpj-storytelling.vercel.app",
+    "NODE_ENV": "production"
+  }
+}

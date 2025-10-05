@@ -1,0 +1,5 @@
+# Ignore CRA legacy project to prevent plugin conflicts
+../src/
+../public/
+../scripts/
+../fpj-storytelling/

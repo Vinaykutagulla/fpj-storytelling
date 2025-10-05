@@ -1,8 +1,17 @@
 {
   "name": "fpj-parent",
+  "private": true,
   "scripts": {
-    "start": "cd fpj-storytelling && npm start",
-    "dev": "cd fpj-storytelling && npm start",
-    "build": "cd fpj-storytelling && npm run build"
+    "next:dev": "cd fpj-storytelling/next-app && npx next dev -H 127.0.0.1 -p 3000",
+    "next:build": "cd fpj-storytelling/next-app && npx next build",
+    "next:start": "cd fpj-storytelling/next-app && npx next start -H 127.0.0.1 -p 3000",
+    "dev": "npm run next:dev",
+    "build": "npm run next:build",
+    "start": "npm run next:start",
+  "preview:static": "cd fpj-storytelling/next-app && SET STATIC_PREVIEW=1&& npx next build && npx next export",
+    "clean:cache": "powershell -NoLogo -NoProfile -Command \"Remove-Item -Recurse -Force fpj-storytelling/next-app/.next -ErrorAction SilentlyContinue; Write-Host 'Cleared .next cache'\"",
+    "reinstall:next": "powershell -NoLogo -NoProfile -Command \"cd fpj-storytelling/next-app; if(Test-Path node_modules){Remove-Item -Recurse -Force node_modules}; npm install\"",
+    "rebuild:fresh": "powershell -NoLogo -NoProfile -Command \"Remove-Item -Recurse -Force fpj-storytelling/next-app/.next -ErrorAction SilentlyContinue; cd fpj-storytelling/next-app; npx next build\"",
+    "doctor:next": "powershell -NoLogo -NoProfile -Command \"node -v; npm -v; cd fpj-storytelling/next-app; try { npm ls next react react-dom } catch { Write-Host 'npm ls completed with non-zero code (some peer warnings)'; }\""
   }
 }

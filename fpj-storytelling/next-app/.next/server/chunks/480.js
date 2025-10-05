@@ -1,0 +1,1 @@
+"use strict";exports.id=480,exports.ids=[480],exports.modules={1480:(e,t,s)=>{s.r(t),s.d(t,{default:()=>r});let r=(0,s(8570).createProxy)(String.raw`C:\Users\lenovo\Documents\fpj-storytelling\fpj-storytelling\next-app\src\app\services\ProgramsClient.tsx#default`)}};

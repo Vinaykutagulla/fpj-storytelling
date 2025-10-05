@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST='{"app\\\\page.tsx -> ../components/dev/PerfOverlay.tsx":{"id":141,"files":["static/chunks/141.a06a9445b164443f.js"]}}';

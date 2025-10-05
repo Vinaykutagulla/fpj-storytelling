@@ -1,3 +1,7 @@
+# [ARCHIVED] Legacy Create React App Codebase
+
+This directory is the retired CRA implementation. The active production site now lives in `next-app/` (Next.js App Router + TypeScript). All new development, pages (including Student Partner), and deployment workflows occur there. You can safely ignore or remove this folder after confirming no remaining assets are needed.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,0 +1,17 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/api/metrics/route": "app/api/metrics/route.js",
+  "/api/partner-applications/admin/route": "app/api/partner-applications/admin/route.js",
+  "/api/partner-applications/route": "app/api/partner-applications/route.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/page": "app/page.js",
+  "/about/page": "app/about/page.js",
+  "/student-partner/page": "app/student-partner/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/diagnostics/route": "app/diagnostics/route.js",
+  "/services/page": "app/services/page.js",
+  "/journey/page": "app/journey/page.js"
+}
