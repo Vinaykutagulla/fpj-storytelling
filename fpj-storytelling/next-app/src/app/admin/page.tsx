@@ -35,16 +35,19 @@ export default function AdminDashboard() {
   const [adminToken, setAdminToken] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [statusFilter, setStatusFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('all');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [showPasswordDialog, setShowPasswordDialog] = useState(true);
 
   // Simple admin access - check for basic password
-  const checkAdminAccess = () => {
-    const password = prompt('Enter admin password:');
+  const checkAdminAccess = (password: string) => {
     if (password === 'admin123' || password === 'firstpharmajob') {
       setIsAuthenticated(true);
       setAdminToken('simple-admin-access');
+      setShowPasswordDialog(false);
+      fetchApplications();
       return true;
     }
-    alert('Invalid password');
+    alert('Invalid password. Try: admin123');
     return false;
   };
 
@@ -54,26 +57,30 @@ export default function AdminDashboard() {
   });
 
   const fetchApplications = async () => {
+    if (!isAuthenticated) return;
+    
     try {
-      // For now, let's try without authentication first to see if apps are there
+      // Try without authentication first to see if apps are there
       const response = await fetch('/api/partner-applications/admin');
       
       if (response.ok) {
         const data = await response.json();
         setApplications(data.items || []);
-        setIsAuthenticated(true);
+        console.log('Applications loaded:', data.items?.length || 0);
       } else {
         console.error('Failed to fetch applications');
-        // Try with simple auth
-        if (!isAuthenticated && checkAdminAccess()) {
-          fetchApplications();
-        }
       }
     } catch (error) {
       console.error('Error fetching applications:', error);
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchApplications();
+    }
+  }, [isAuthenticated]);
 
   const approveApplication = async (app: Application) => {
     try {
@@ -153,21 +160,27 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-slate-900 flex items-center justify-center">
         <div className="bg-white rounded-lg p-8 max-w-md w-full">
-          <h1 className="text-2xl font-bold mb-6">Admin Login</h1>
-          <input
-            type="password"
-            placeholder="Enter admin token"
-            value={adminToken}
-            onChange={(e) => setAdminToken(e.target.value)}
-            className="w-full p-3 border rounded-lg mb-4"
-            onKeyPress={(e) => e.key === 'Enter' && fetchApplications()}
-          />
-          <button
-            onClick={fetchApplications}
-            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700"
-          >
-            Login
-          </button>
+          <h1 className="text-2xl font-bold mb-6 text-center">Admin Access</h1>
+          <p className="text-slate-600 mb-4 text-center">Enter admin password to access dashboard</p>
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            checkAdminAccess(passwordInput);
+          }}>
+            <input
+              type="password"
+              placeholder="Enter password (hint: admin123)"
+              value={passwordInput}
+              onChange={(e) => setPasswordInput(e.target.value)}
+              className="w-full p-3 border rounded-lg mb-4 text-center"
+              autoFocus
+            />
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 font-medium"
+            >
+              Access Dashboard
+            </button>
+          </form>
         </div>
       </div>
     );
