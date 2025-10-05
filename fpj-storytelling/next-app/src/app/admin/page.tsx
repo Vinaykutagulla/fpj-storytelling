@@ -60,15 +60,26 @@ export default function AdminDashboard() {
     if (!isAuthenticated) return;
     
     try {
-      // Try without authentication first to see if apps are there
+      console.log('Fetching applications...');
       const response = await fetch('/api/partner-applications/admin');
+      console.log('Response status:', response.status);
       
       if (response.ok) {
         const data = await response.json();
+        console.log('Full API response:', data);
+        console.log('Applications data:', data.items);
+        console.log('Applications count:', data.items?.length || 0);
+        
         setApplications(data.items || []);
-        console.log('Applications loaded:', data.items?.length || 0);
+        
+        if (!data.items || data.items.length === 0) {
+          console.log('No applications found. Data source:', data.source);
+          alert(`No applications found. Data source: ${data.source || 'unknown'}. Try submitting a test application first.`);
+        }
       } else {
-        console.error('Failed to fetch applications');
+        console.error('Failed to fetch applications, status:', response.status);
+        const errorData = await response.text();
+        console.error('Error response:', errorData);
       }
     } catch (error) {
       console.error('Error fetching applications:', error);
@@ -255,7 +266,33 @@ export default function AdminDashboard() {
             </div>
           </div>
           
-          <div className="overflow-x-auto">
+          {loading ? (
+            <div className="p-8 text-center">
+              <div className="text-lg">Loading applications...</div>
+            </div>
+          ) : applications.length === 0 ? (
+            <div className="p-8 text-center">
+              <div className="text-lg text-slate-600 mb-4">No applications found</div>
+              <div className="text-sm text-slate-500 mb-4">
+                Applications might be empty. Try submitting a test application first.
+              </div>
+              <div className="space-x-4">
+                <button
+                  onClick={fetchApplications}
+                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                >
+                  🔄 Refresh Data
+                </button>
+                <a
+                  href="/student-partner"
+                  target="_blank"
+                  className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 inline-block"
+                >
+                  ➕ Submit Test Application
+                </a>
+              </div>
+            </div>
+          ) : (
             <table className="w-full">
               <thead className="bg-slate-50">
                 <tr>
@@ -335,6 +372,7 @@ export default function AdminDashboard() {
                 ))}
               </tbody>
             </table>
+          )}
           </div>
         </div>
       </div>
