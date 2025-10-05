@@ -11,12 +11,10 @@ interface FormState {
   year: string;
   instagram?: string;
   linkedin?: string;
-  motivation: string;
-  referralCode?: string; // captured via cookie or manual entry
   website?: string; // honeypot
 }
 
-const initial: FormState = { firstName:'', lastName:'', email:'', phone:'', college:'', course:'', year:'', instagram:'', linkedin:'', motivation:'', referralCode:'', website:'' };
+const initial: FormState = { firstName:'', lastName:'', email:'', phone:'', college:'', course:'', year:'', instagram:'', linkedin:'', website:'' };
 
 export default function OnboardingForm() {
   const [form, setForm] = useState<FormState>(initial);
@@ -24,10 +22,8 @@ export default function OnboardingForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState<string|null>(null);
-  // Earnings estimator + word count state (declare before any conditional returns to satisfy hooks rules)
+  // Earnings estimator state
   const [referralsEst, setReferralsEst] = useState(10);
-  const wordCount = form.motivation.trim() ? form.motivation.trim().split(/\s+/).length : 0;
-  const wcState = wordCount < 20 ? 'text-red-600' : wordCount < 60 ? 'text-amber-600' : 'text-green-600';
 
   function validate() {
     const e: typeof errors = {};
@@ -38,23 +34,8 @@ export default function OnboardingForm() {
     if (!form.college.trim()) e.college = 'Required';
     if (!form.course.trim()) e.course = 'Required';
     if (!form.year.trim()) e.year = 'Required';
-    if (form.motivation.trim().split(/\s+/).length < 20) e.motivation = 'Aim for 100–200 words (≥20 words)';
     return e;
   }
-
-  // Prefill referral code from cookie (once) if present and not already set
-  React.useEffect(() => {
-    if (!form.referralCode) {
-      const match = document.cookie.match(/(?:^|; )fpj_ref=([^;]+)/);
-      if (match) {
-        try {
-          const raw = decodeURIComponent(match[1]);
-          const sanitized = raw.replace(/[^A-Za-z0-9_-]/g,'').slice(0,32);
-          if (sanitized) setForm(f => ({ ...f, referralCode: sanitized }));
-        } catch {}
-      }
-    }
-  }, [form.referralCode]);
 
   async function handleSubmit(ev: React.FormEvent) {
     ev.preventDefault();
@@ -64,18 +45,17 @@ export default function OnboardingForm() {
     setSubmitting(true);
     setServerError(null);
     try {
-      // Expanded payload with new fields (backend now supports these)
+      // Simplified payload without motivation and referral code
       const payload = {
         name: form.firstName + ' ' + form.lastName,
         email: form.email,
         institution: form.college,
         year: form.year,
-        motivation: form.motivation,
+        motivation: 'Applied through simplified form', // Default motivation
         phone: form.phone,
         course: form.course,
         instagram: form.instagram,
         linkedin: form.linkedin,
-        referralCode: form.referralCode,
         website: form.website // honeypot
       };
       const res = await fetch('/api/partner-applications', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
@@ -177,24 +157,10 @@ export default function OnboardingForm() {
               <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">LinkedIn URL</label>
               {input('linkedin',{ placeholder:'https://linkedin.com/in/...' })}
             </div>
-            <div>
-              <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">Referral Code <span className="font-normal text-slate-400">(optional)</span></label>
-              {input('referralCode',{ placeholder:'Auto-filled if you used a referral link' })}
-              {form.referralCode && <p className="mt-1 text-[11px] text-slate-500 dark:text-slate-400">Using code: <span className="font-medium">{form.referralCode}</span></p>}
-            </div>
             {/* Honeypot */}
             <div className="hidden" aria-hidden="true">
               {input('website',{ tabIndex:-1, autoComplete:'off' })}
             </div>
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1 text-slate-700 dark:text-slate-300">Motivation (Why You?) * <span className="font-normal text-slate-400">Target 100–200 words</span></label>
-            {textarea('motivation',{ required:true })}
-            <div className="mt-1 flex items-center justify-between text-xs">
-              <p className={"font-medium " + wcState}>Word count: {wordCount}</p>
-              <p className="text-slate-400">Min 20 for submission</p>
-            </div>
-            {errors.motivation && <p className="mt-1 text-xs text-red-600" role="alert">{errors.motivation}</p>}
           </div>
           <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-5 bg-slate-50 dark:bg-slate-900/30">
             <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-3">Earnings Estimator (Preview)</h3>
