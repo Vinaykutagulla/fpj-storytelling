@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       logger.warn('spam_detected', { ip });
       return NextResponse.json({ ok: true, id: 'ignored', spam: true }, { status: 200 });
     }
-    const required = ['name','email','institution','year','motivation'];
+    const required = ['name','email','institution','year'];
     for (const k of required) {
       if (!data[k] || String(data[k]).trim() === '') {
         return NextResponse.json({ error: `Missing field: ${k}` }, { status: 400 });
@@ -54,16 +54,13 @@ export async function POST(req: Request) {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
     }
-    if (String(data.motivation).trim().length < 40) {
-      return NextResponse.json({ error: 'Motivation too short' }, { status: 400 });
-    }
     const record: ApplicationRecord = {
       id: crypto.randomUUID(),
       name: data.name.trim(),
       email: data.email.trim(),
       institution: data.institution.trim(),
       year: data.year.trim(),
-      motivation: data.motivation.trim(),
+      motivation: 'Application submitted via streamlined form', // Default value
       phone: data.phone?.trim() || undefined,
       course: data.course?.trim() || undefined,
       instagram: data.instagram?.trim() || undefined,
@@ -82,7 +79,7 @@ export async function POST(req: Request) {
           email: record.email,
           institution: record.institution,
           year: record.year,
-          motivation: record.motivation,
+          motivation: record.motivation, // Will use default value
           phone: record.phone,
           course: record.course,
           instagram: record.instagram,
