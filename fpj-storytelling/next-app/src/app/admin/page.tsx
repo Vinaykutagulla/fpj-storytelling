@@ -29,6 +29,7 @@ const generateReferralCode = (name: string, email: string): string => {
 };
 
 export default function AdminDashboard() {
+  // Admin dashboard for reviewing student partner applications
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedApp, setSelectedApp] = useState<Application | null>(null);
