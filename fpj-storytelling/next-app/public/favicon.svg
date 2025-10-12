@@ -1,21 +1,43 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Brain-inspired design for FirstPharmaJob -->
+  <!-- FirstPharmaJob Brand Favicon -->
   <defs>
+    <!-- Brand gradient for outer ring -->
+    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#3b82f6" />
+      <stop offset="50%" stopColor="#8b5cf6" />
+      <stop offset="100%" stopColor="#06b6d4" />
+    </linearGradient>
+    
+    <!-- Brain gradient -->
     <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+      <stop offset="0%" stopColor="#f59e0b" />
+      <stop offset="50%" stopColor="#ef4444" />
+      <stop offset="100%" stopColor="#ec4899" />
     </linearGradient>
   </defs>
   
-  <!-- Main brain shape -->
-  <path d="M16 4C20.5 4 24 7.5 24 12C24 13.5 23.5 15 22.5 16C26 17 28 20 28 24C28 26.5 26.5 28 24 28H8C5.5 28 4 26.5 4 24C4 20 6 17 9.5 16C8.5 15 8 13.5 8 12C8 7.5 11.5 4 16 4Z" fill="url(#brainGradient)"/>
+  <!-- Outer ring (brand ring) -->
+  <circle cx="16" cy="16" r="15" fill="url(#brandGradient)" />
   
-  <!-- Brain details/folds -->
-  <path d="M12 10C13 9 15 9 16 10C17 9 19 9 20 10" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"/>
-  <path d="M10 14C11 13 13 13 14 14C15 13 17 13 18 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"/>
-  <path d="M14 18C15 17 17 17 18 18" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <!-- Inner dark circle -->
+  <circle cx="16" cy="16" r="12" fill="#1e293b" />
   
-  <!-- Central highlight -->
-  <ellipse cx="16" cy="16" rx="4" ry="6" fill="white" opacity="0.2"/>
+  <!-- Brain design - simplified for favicon size -->
+  <g>
+    <!-- Left hemisphere -->
+    <path d="M10 12 Q8 9 10 8 Q12 7 14 9 Q13 11 12 13 Q10 15 8 17 Q7 19 9 20 Q11 21 13 19 Q12 17 11 15 Q10 13 10 12 Z" 
+          fill="url(#brainGradient)" opacity="0.9"/>
+    
+    <!-- Right hemisphere -->
+    <path d="M22 12 Q24 9 22 8 Q20 7 18 9 Q19 11 20 13 Q22 15 24 17 Q25 19 23 20 Q21 21 19 19 Q20 17 21 15 Q22 13 22 12 Z" 
+          fill="url(#brainGradient)" opacity="0.9"/>
+    
+    <!-- Central connection -->
+    <path d="M14 14 Q16 13 18 14 Q16 15 14 14" fill="url(#brainGradient)" opacity="0.7"/>
+  </g>
+  
+  <!-- Small brand indicators -->
+  <circle cx="6" cy="16" r="1.5" fill="#60a5fa" />
+  <circle cx="26" cy="16" r="1.5" fill="#60a5fa" />
+</svg>
 </svg>
