@@ -9,6 +9,14 @@ import React from 'react';
 export const metadata: Metadata = {
   title: 'FirstPharmaJob – Accelerate Your Pharma Career',
   description: 'Guidance, training, mentoring and partner opportunities to launch and grow a pharmaceutical career.',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '32x32' }
+    ],
+    apple: '/apple-touch-icon.png',
+    shortcut: '/favicon.ico'
+  },
   openGraph: {
     title: 'FirstPharmaJob – Accelerate Your Pharma Career',
     description: 'Guidance, training, mentoring and partner opportunities to launch and grow a pharmaceutical career.',
@@ -35,6 +43,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
         <link rel="canonical" href="https://firstpharmajob.com/" />
+        
+        {/* Favicon links for better compatibility */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon-32x32.svg" />
+        <link rel="icon" type="image/svg+xml" sizes="16x16" href="/favicon-16x16.svg" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+        <link rel="shortcut icon" href="/favicon.svg" />
       </head>
       <body className="min-h-screen flex flex-col">
         <ThemeProvider>
