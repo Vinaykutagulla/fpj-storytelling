@@ -12,8 +12,9 @@ import FloatingProgressIndicator from '../components/sections/FloatingProgressIn
 import { motion } from 'framer-motion';
 import PreclinicalSection from '../components/sections/PreclinicalSection';
 import ClinicalSection from '../components/sections/ClinicalSection';
-import RegulatorySection from '../components/sections/RegulatorySection';
-import ManufacturingSection from '../components/sections/ManufacturingSection';
+// Temporarily disabled due to build errors:
+// import RegulatorySection from '../components/sections/RegulatorySection';
+// import ManufacturingSection from '../components/sections/ManufacturingSection';
 import LaunchSection from '../components/sections/LaunchSection';
 const PerfOverlay = dynamic(() => import('../components/dev/PerfOverlay.tsx').then(m => m.default), { ssr: false, loading: () => null });
 
@@ -23,8 +24,9 @@ export default function HomePage() {
     { id: 'opening', title: 'Molecule', node: <OpeningSection /> },
     { id: 'preclinical', title: 'Preclinical', node: <PreclinicalSection /> },
     { id: 'clinical', title: 'Clinical', node: <ClinicalSection /> },
-    { id: 'regulatory', title: 'Regulatory', node: <RegulatorySection /> },
-    { id: 'manufacturing', title: 'Manufacturing', node: <ManufacturingSection /> },
+    // Temporarily disabled:
+    // { id: 'regulatory', title: 'Regulatory', node: <RegulatorySection /> },
+    // { id: 'manufacturing', title: 'Manufacturing', node: <ManufacturingSection /> },
     { id: 'launch', title: 'Launch', node: <LaunchSection /> },
   ]), []);
 
