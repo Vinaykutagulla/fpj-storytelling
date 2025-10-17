@@ -1,0 +1,220 @@
+<!-- FirstPharmaJob LinkedIn Cover Page - Professional Design -->
+<svg width="1584" height="396" viewBox="0 0 1584 396" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Professional gradients -->
+    <linearGradient id="coverBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#0f172a" />
+      <stop offset="30%" stopColor="#1e293b" />
+      <stop offset="70%" stopColor="#334155" />
+      <stop offset="100%" stopColor="#475569" />
+    </linearGradient>
+    
+    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#3b82f6" />
+      <stop offset="50%" stopColor="#8b5cf6" />
+      <stop offset="100%" stopColor="#06b6d4" />
+    </linearGradient>
+    
+    <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#f59e0b" />
+      <stop offset="50%" stopColor="#ef4444" />
+      <stop offset="100%" stopColor="#ec4899" />
+    </linearGradient>
+    
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.1" />
+      <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.3" />
+      <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.1" />
+    </linearGradient>
+    
+    <!-- Subtle pattern -->
+    <pattern id="moleculePattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="1.5" fill="#60a5fa" opacity="0.1" />
+      <circle cx="80" cy="40" r="1" fill="#8b5cf6" opacity="0.1" />
+      <circle cx="50" cy="70" r="1.2" fill="#06b6d4" opacity="0.1" />
+      <line x1="20" y1="20" x2="50" y2="70" stroke="#60a5fa" strokeWidth="0.5" opacity="0.05" />
+      <line x1="50" y1="70" x2="80" y2="40" stroke="#8b5cf6" strokeWidth="0.5" opacity="0.05" />
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1584" height="396" fill="url(#coverBg)" />
+  <rect width="1584" height="396" fill="url(#moleculePattern)" opacity="0.3" />
+  
+  <!-- Accent stripe -->
+  <rect x="0" y="0" width="1584" height="8" fill="url(#brandGradient)" />
+  <rect x="0" y="388" width="1584" height="8" fill="url(#brandGradient)" />
+  
+  <!-- Left side - Logo and branding -->
+  <g transform="translate(80, 80)">
+    <!-- Logo circle -->
+    <circle cx="118" cy="118" r="110" fill="url(#brandGradient)" opacity="0.9" />
+    <circle cx="118" cy="118" r="95" fill="#1e293b" />
+    
+    <!-- Brand accent dots -->
+    <circle cx="40" cy="118" r="6" fill="#60a5fa" opacity="0.8" />
+    <circle cx="196" cy="118" r="6" fill="#60a5fa" opacity="0.8" />
+    
+    <!-- Brain design -->
+    <g>
+      <!-- Left hemisphere -->
+      <path d="M78 88 Q68 73 78 68 Q93 63 103 78 Q98 93 93 103 Q83 113 68 128 Q63 138 73 143 Q88 148 98 138 Q93 123 88 113 Q78 103 78 88 Z" 
+            fill="url(#brainGradient)" opacity="0.9"/>
+      
+      <!-- Right hemisphere -->
+      <path d="M158 88 Q168 73 158 68 Q143 63 133 78 Q138 93 143 103 Q153 113 168 128 Q173 138 163 143 Q148 148 138 138 Q143 123 148 113 Q158 103 158 88 Z" 
+            fill="url(#brainGradient)" opacity="0.9"/>
+      
+      <!-- Central connection -->
+      <path d="M103 108 Q118 103 133 108 Q118 113 103 108" fill="url(#brainGradient)" opacity="0.7"/>
+      
+      <!-- Neural network -->
+      <g stroke="#60a5fa" strokeWidth="1.5" fill="none" opacity="0.6">
+        <line x1="88" y1="98" x2="148" y2="98" />
+        <line x1="93" y1="118" x2="143" y2="118" />
+        <line x1="98" y1="138" x2="138" y2="138" />
+        <path d="M88 88 Q118 93 148 88" />
+        <path d="M98 148 Q118 143 138 148" />
+      </g>
+      
+      <!-- Neural nodes -->
+      <circle cx="98" cy="98" r="3" fill="#fbbf24" opacity="0.9" />
+      <circle cx="138" cy="98" r="3" fill="#fbbf24" opacity="0.9" />
+      <circle cx="103" cy="118" r="3" fill="#fbbf24" opacity="0.9" />
+      <circle cx="133" cy="118" r="3" fill="#fbbf24" opacity="0.9" />
+      <circle cx="108" cy="138" r="3" fill="#fbbf24" opacity="0.9" />
+      <circle cx="128" cy="138" r="3" fill="#fbbf24" opacity="0.9" />
+      
+      <!-- Center pulse -->
+      <circle cx="118" cy="118" r="5" fill="#60a5fa" opacity="0.9">
+        <animate attributeName="r" values="4;7;4" dur="3s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" />
+      </circle>
+    </g>
+  </g>
+  
+  <!-- Center content area -->
+  <g transform="translate(320, 0)">
+    <!-- Company name -->
+    <text x="0" y="120" fontFamily="Arial, sans-serif" fontSize="72" fontWeight="bold" fill="white" letterSpacing="2px">
+      FirstPharmaJob
+    </text>
+    
+    <!-- Tagline -->
+    <text x="0" y="160" fontFamily="Arial, sans-serif" fontSize="28" fontWeight="300" fill="#94a3b8" letterSpacing="1px">
+      Accelerate Your Pharmaceutical Career
+    </text>
+    
+    <!-- Separator line -->
+    <rect x="0" y="180" width="400" height="2" fill="url(#brandGradient)" opacity="0.6" />
+    
+    <!-- Services -->
+    <g transform="translate(0, 220)">
+      <text x="0" y="0" fontFamily="Arial, sans-serif" fontSize="18" fontWeight="600" fill="#e2e8f0">
+        Professional Training
+      </text>
+      <circle cx="180" cy="-5" r="2" fill="#60a5fa" />
+      
+      <text x="200" y="0" fontFamily="Arial, sans-serif" fontSize="18" fontWeight="600" fill="#e2e8f0">
+        Student Partner Program
+      </text>
+      <circle cx="420" cy="-5" r="2" fill="#8b5cf6" />
+      
+      <text x="440" y="0" fontFamily="Arial, sans-serif" fontSize="18" fontWeight="600" fill="#e2e8f0">
+        Career Development
+      </text>
+    </g>
+    
+    <!-- Key metrics -->
+    <g transform="translate(0, 260)">
+      <g>
+        <text x="0" y="0" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="bold" fill="#3b82f6">1000+</text>
+        <text x="0" y="20" fontFamily="Arial, sans-serif" fontSize="12" fill="#94a3b8">Students Trained</text>
+      </g>
+      
+      <g transform="translate(150, 0)">
+        <text x="0" y="0" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="bold" fill="#8b5cf6">95%</text>
+        <text x="0" y="20" fontFamily="Arial, sans-serif" fontSize="12" fill="#94a3b8">Placement Rate</text>
+      </g>
+      
+      <g transform="translate(300, 0)">
+        <text x="0" y="0" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="bold" fill="#06b6d4">50+</text>
+        <text x="0" y="20" fontFamily="Arial, sans-serif" fontSize="12" fill="#94a3b8">Partner Companies</text>
+      </g>
+      
+      <g transform="translate(450, 0)">
+        <text x="0" y="0" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="bold" fill="#ec4899">24/7</text>
+        <text x="0" y="20" fontFamily="Arial, sans-serif" fontSize="12" fill="#94a3b8">Support Available</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Right side - Drug development journey -->
+  <g transform="translate(1200, 60)">
+    <!-- Journey visualization -->
+    <g stroke="#475569" strokeWidth="2" fill="none">
+      <!-- Main pathway -->
+      <path d="M0 40 Q50 20 100 40 Q150 60 200 40 Q250 20 300 40" opacity="0.3" />
+    </g>
+    
+    <!-- Journey stages -->
+    <g>
+      <!-- Discovery -->
+      <circle cx="50" cy="40" r="8" fill="#3b82f6" opacity="0.8" />
+      <text x="50" y="65" fontFamily="Arial, sans-serif" fontSize="11" fill="#94a3b8" textAnchor="middle">Discovery</text>
+      
+      <!-- Development -->
+      <circle cx="125" cy="40" r="8" fill="#8b5cf6" opacity="0.8" />
+      <text x="125" y="65" fontFamily="Arial, sans-serif" fontSize="11" fill="#94a3b8" textAnchor="middle">Development</text>
+      
+      <!-- Clinical -->
+      <circle cx="200" cy="40" r="8" fill="#06b6d4" opacity="0.8" />
+      <text x="200" y="65" fontFamily="Arial, sans-serif" fontSize="11" fill="#94a3b8" textAnchor="middle">Clinical</text>
+      
+      <!-- Launch -->
+      <circle cx="275" cy="40" r="8" fill="#ec4899" opacity="0.8" />
+      <text x="275" y="65" fontFamily="Arial, sans-serif" fontSize="11" fill="#94a3b8" textAnchor="middle">Launch</text>
+    </g>
+    
+    <!-- Professional pathway text -->
+    <text x="162" y="120" fontFamily="Arial, sans-serif" fontSize="16" fontWeight="600" fill="#e2e8f0" textAnchor="middle">
+      Your Career Pathway
+    </text>
+    <text x="162" y="140" fontFamily="Arial, sans-serif" fontSize="12" fill="#94a3b8" textAnchor="middle">
+      From Student to Industry Professional
+    </text>
+    
+    <!-- Call to action -->
+    <g transform="translate(62, 170)">
+      <rect x="0" y="0" width="200" height="40" rx="20" fill="url(#brandGradient)" opacity="0.9" />
+      <text x="100" y="26" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="600" fill="white" textAnchor="middle">
+        Start Your Journey Today
+      </text>
+    </g>
+    
+    <!-- Website -->
+    <text x="162" y="250" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="500" fill="#60a5fa" textAnchor="middle">
+      firstpharmajob.com
+    </text>
+  </g>
+  
+  <!-- Decorative elements -->
+  <g opacity="0.1">
+    <!-- Top right molecules -->
+    <circle cx="1400" cy="60" r="3" fill="#60a5fa" />
+    <circle cx="1450" cy="40" r="2" fill="#8b5cf6" />
+    <circle cx="1480" cy="80" r="2.5" fill="#06b6d4" />
+    <line x1="1400" y1="60" x2="1450" y2="40" stroke="#60a5fa" strokeWidth="1" />
+    <line x1="1450" y1="40" x2="1480" y2="80" stroke="#8b5cf6" strokeWidth="1" />
+    
+    <!-- Bottom left molecules -->
+    <circle cx="100" cy="340" r="2.5" fill="#ec4899" />
+    <circle cx="140" cy="360" r="2" fill="#f59e0b" />
+    <circle cx="80" cy="370" r="2" fill="#ef4444" />
+    <line x1="100" y1="340" x2="140" y2="360" stroke="#ec4899" strokeWidth="1" />
+    <line x1="140" y1="360" x2="80" y2="370" stroke="#f59e0b" strokeWidth="1" />
+  </g>
+  
+  <!-- Bottom glow effect -->
+  <rect x="0" y="350" width="1584" height="46" fill="url(#accentGlow)" />
+</svg>

@@ -1,0 +1,232 @@
+<!-- FirstPharmaJob LinkedIn Cover - Corporate Minimalist -->
+<svg width="1584" height="396" viewBox="0 0 1584 396" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Corporate gradients -->
+    <linearGradient id="corporateBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#ffffff" />
+      <stop offset="50%" stopColor="#f8fafc" />
+      <stop offset="100%" stopColor="#f1f5f9" />
+    </linearGradient>
+    
+    <linearGradient id="brandAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#3b82f6" />
+      <stop offset="50%" stopColor="#8b5cf6" />
+      <stop offset="100%" stopColor="#06b6d4" />
+    </linearGradient>
+    
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#1e293b" />
+      <stop offset="100%" stopColor="#334155" />
+    </linearGradient>
+    
+    <!-- Subtle tech pattern -->
+    <pattern id="techGrid" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+      <rect width="50" height="50" fill="none" />
+      <circle cx="25" cy="25" r="0.5" fill="#3b82f6" opacity="0.1" />
+      <rect x="24" y="0" width="2" height="50" fill="#8b5cf6" opacity="0.03" />
+      <rect x="0" y="24" width="50" height="2" fill="#06b6d4" opacity="0.03" />
+    </pattern>
+    
+    <!-- Drop shadow filter -->
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#000000" floodOpacity="0.1"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1584" height="396" fill="url(#corporateBg)" />
+  <rect width="1584" height="396" fill="url(#techGrid)" />
+  
+  <!-- Brand accent bar -->
+  <rect x="0" y="0" width="1584" height="6" fill="url(#brandAccent)" />
+  
+  <!-- Main content container -->
+  <g transform="translate(80, 60)">
+    
+    <!-- Logo section -->
+    <g>
+      <!-- Professional logo circle -->
+      <circle cx="70" cy="70" r="60" fill="url(#brandAccent)" filter="url(#dropShadow)" />
+      <circle cx="70" cy="70" r="48" fill="#ffffff" />
+      
+      <!-- Simplified brain icon -->
+      <g transform="translate(70, 70)">
+        <!-- Left hemisphere -->
+        <path d="M-20 -15 Q-25 -25 -15 -25 Q-5 -25 0 -15 Q-5 -5 -10 5 Q-15 15 -25 20 Q-30 25 -20 25 Q-10 25 -5 20 Q-10 10 -15 5 Q-20 -5 -20 -15 Z" 
+              fill="#3b82f6" opacity="0.8"/>
+        
+        <!-- Right hemisphere -->
+        <path d="M20 -15 Q25 -25 15 -25 Q5 -25 0 -15 Q5 -5 10 5 Q15 15 25 20 Q30 25 20 25 Q10 25 5 20 Q10 10 15 5 Q20 -5 20 -15 Z" 
+              fill="#8b5cf6" opacity="0.8"/>
+        
+        <!-- Central connection -->
+        <circle cx="0" cy="0" r="3" fill="#06b6d4" />
+        
+        <!-- Neural connections -->
+        <line x1="-15" y1="-10" x2="15" y2="-10" stroke="#60a5fa" strokeWidth="1" opacity="0.6" />
+        <line x1="-10" y1="0" x2="10" y2="0" stroke="#8b5cf6" strokeWidth="1" opacity="0.6" />
+        <line x1="-15" y1="10" x2="15" y2="10" stroke="#06b6d4" strokeWidth="1" opacity="0.6" />
+      </g>
+    </g>
+    
+    <!-- Company information -->
+    <g transform="translate(180, 0)">
+      <!-- Company name -->
+      <text x="0" y="50" fontFamily="Arial, sans-serif" fontSize="48" fontWeight="700" fill="url(#textGradient)" letterSpacing="1px">
+        FirstPharmaJob
+      </text>
+      
+      <!-- Professional tagline -->
+      <text x="0" y="80" fontFamily="Arial, sans-serif" fontSize="18" fontWeight="400" fill="#64748b" letterSpacing="0.5px">
+        Professional Pharmaceutical Career Development Institute
+      </text>
+      
+      <!-- Separator -->
+      <rect x="0" y="95" width="300" height="1" fill="url(#brandAccent)" opacity="0.4" />
+      
+      <!-- Key services -->
+      <g transform="translate(0, 120)">
+        <g>
+          <rect x="0" y="-8" width="4" height="16" fill="#3b82f6" />
+          <text x="15" y="0" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="600" fill="#334155">
+            Industry Certification Programs
+          </text>
+        </g>
+        
+        <g transform="translate(250, 0)">
+          <rect x="0" y="-8" width="4" height="16" fill="#8b5cf6" />
+          <text x="15" y="0" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="600" fill="#334155">
+            Student Partner Network
+          </text>
+        </g>
+        
+        <g transform="translate(500, 0)">
+          <rect x="0" y="-8" width="4" height="16" fill="#06b6d4" />
+          <text x="15" y="0" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="600" fill="#334155">
+            Career Placement Services
+          </text>
+        </g>
+      </g>
+    </g>
+    
+    <!-- Statistics section -->
+    <g transform="translate(180, 180)">
+      <!-- Statistics container -->
+      <rect x="0" y="0" width="700" height="80" rx="12" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="url(#dropShadow)" />
+      
+      <!-- Stat 1 -->
+      <g transform="translate(40, 25)">
+        <text x="0" y="0" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="bold" fill="#3b82f6">1,000+</text>
+        <text x="0" y="18" fontFamily="Arial, sans-serif" fontSize="12" fontWeight="500" fill="#64748b">Students Certified</text>
+      </g>
+      
+      <!-- Divider -->
+      <line x1="150" y1="15" x2="150" y2="65" stroke="#e2e8f0" strokeWidth="1" />
+      
+      <!-- Stat 2 -->
+      <g transform="translate(190, 25)">
+        <text x="0" y="0" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="bold" fill="#8b5cf6">95%</text>
+        <text x="0" y="18" fontFamily="Arial, sans-serif" fontSize="12" fontWeight="500" fill="#64748b">Job Placement Rate</text>
+      </g>
+      
+      <!-- Divider -->
+      <line x1="300" y1="15" x2="300" y2="65" stroke="#e2e8f0" strokeWidth="1" />
+      
+      <!-- Stat 3 -->
+      <g transform="translate(340, 25)">
+        <text x="0" y="0" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="bold" fill="#06b6d4">50+</text>
+        <text x="0" y="18" fontFamily="Arial, sans-serif" fontSize="12" fontWeight="500" fill="#64748b">Partner Companies</text>
+      </g>
+      
+      <!-- Divider -->
+      <line x1="450" y1="15" x2="450" y2="65" stroke="#e2e8f0" strokeWidth="1" />
+      
+      <!-- Stat 4 -->
+      <g transform="translate(490, 25)">
+        <text x="0" y="0" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="bold" fill="#ec4899">5 Years</text>
+        <text x="0" y="18" fontFamily="Arial, sans-serif" fontSize="12" fontWeight="500" fill="#64748b">Industry Experience</text>
+      </g>
+      
+      <!-- CTA -->
+      <g transform="translate(580, 20)">
+        <rect x="0" y="0" width="100" height="35" rx="18" fill="url(#brandAccent)" />
+        <text x="50" y="23" fontFamily="Arial, sans-serif" fontSize="12" fontWeight="600" fill="white" textAnchor="middle">
+          Join Now
+        </text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Right side - Professional pathway -->
+  <g transform="translate(1100, 60)">
+    <!-- Pathway container -->
+    <rect x="0" y="0" width="400" height="276" rx="16" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" filter="url(#dropShadow)" />
+    
+    <!-- Header -->
+    <text x="200" y="35" fontFamily="Arial, sans-serif" fontSize="18" fontWeight="600" fill="#1e293b" textAnchor="middle">
+      Your Career Journey
+    </text>
+    
+    <!-- Pathway steps -->
+    <g transform="translate(50, 70)">
+      <!-- Step 1 -->
+      <g>
+        <circle cx="0" cy="0" r="12" fill="#3b82f6" />
+        <text x="0" y="4" fontFamily="Arial, sans-serif" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">1</text>
+        <text x="25" y="-5" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="600" fill="#1e293b">Apply to Program</text>
+        <text x="25" y="10" fontFamily="Arial, sans-serif" fontSize="11" fill="#64748b">Join our student partner network</text>
+      </g>
+      
+      <!-- Connector -->
+      <line x1="0" y1="12" x2="0" y2="38" stroke="#e2e8f0" strokeWidth="2" />
+      
+      <!-- Step 2 -->
+      <g transform="translate(0, 50)">
+        <circle cx="0" cy="0" r="12" fill="#8b5cf6" />
+        <text x="0" y="4" fontFamily="Arial, sans-serif" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">2</text>
+        <text x="25" y="-5" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="600" fill="#1e293b">Get Certified</text>
+        <text x="25" y="10" fontFamily="Arial, sans-serif" fontSize="11" fill="#64748b">Complete industry training modules</text>
+      </g>
+      
+      <!-- Connector -->
+      <line x1="0" y1="62" x2="0" y2="88" stroke="#e2e8f0" strokeWidth="2" />
+      
+      <!-- Step 3 -->
+      <g transform="translate(0, 100)">
+        <circle cx="0" cy="0" r="12" fill="#06b6d4" />
+        <text x="0" y="4" fontFamily="Arial, sans-serif" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">3</text>
+        <text x="25" y="-5" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="600" fill="#1e293b">Land Your Job</text>
+        <text x="25" y="10" fontFamily="Arial, sans-serif" fontSize="11" fill="#64748b">Access exclusive job opportunities</text>
+      </g>
+      
+      <!-- Connector -->
+      <line x1="0" y1="112" x2="0" y2="138" stroke="#e2e8f0" strokeWidth="2" />
+      
+      <!-- Step 4 -->
+      <g transform="translate(0, 150)">
+        <circle cx="0" cy="0" r="12" fill="#ec4899" />
+        <text x="0" y="4" fontFamily="Arial, sans-serif" fontSize="10" fontWeight="bold" fill="white" textAnchor="middle">4</text>
+        <text x="25" y="-5" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="600" fill="#1e293b">Advance Career</text>
+        <text x="25" y="10" fontFamily="Arial, sans-serif" fontSize="11" fill="#64748b">Ongoing mentorship and growth</text>
+      </g>
+    </g>
+    
+    <!-- Footer -->
+    <g transform="translate(0, 240)">
+      <rect x="50" y="0" width="300" height="1" fill="#e2e8f0" />
+      <text x="200" y="20" fontFamily="Arial, sans-serif" fontSize="14" fontWeight="500" fill="#3b82f6" textAnchor="middle">
+        firstpharmajob.com
+      </text>
+    </g>
+  </g>
+  
+  <!-- Subtle decorative elements -->
+  <g opacity="0.1">
+    <!-- Top molecules -->
+    <circle cx="1200" cy="30" r="2" fill="#3b82f6" />
+    <circle cx="1230" cy="20" r="1.5" fill="#8b5cf6" />
+    <circle cx="1250" cy="40" r="1.8" fill="#06b6d4" />
+    <line x1="1200" y1="30" x2="1230" y2="20" stroke="#3b82f6" strokeWidth="0.8" />
+    <line x1="1230" y1="20" x2="1250" y2="40" stroke="#8b5cf6" strokeWidth="0.8" />
+  </g>
+</svg>

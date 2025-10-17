@@ -24,6 +24,7 @@ function jsonLd() {
         'contactPoint': [{
           '@type': 'ContactPoint',
           'contactType': 'customer support',
+          'telephone': '+91 91005 14968',
           'email': 'firstpharmajob@gmail.com',
           'availableLanguage': ['en']
         }]

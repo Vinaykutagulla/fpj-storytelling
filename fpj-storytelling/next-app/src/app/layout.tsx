@@ -4,7 +4,7 @@ import { ThemeProvider } from '../components/ThemeProvider.tsx';
 import { Navigation } from '../components/Navigation.tsx';
 import { Footer } from '../components/Footer.tsx';
 import { inlineThemeScript } from '../lib/themeScript.ts';
-import { organizationSchema, websiteSchema } from '../lib/schemas';
+import { organizationSchema, websiteSchema, breadcrumbSchema, serviceSchema } from '../lib/schemas';
 import React from 'react';
 
 export const metadata: Metadata = {
@@ -72,7 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
         <link rel="shortcut icon" href="/favicon.svg" />
         
-        {/* Structured Data for SEO */}
+        {/* Enhanced Structured Data for Rich Search Results */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -80,6 +80,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
         />
       </head>
       <body className="min-h-screen flex flex-col">
