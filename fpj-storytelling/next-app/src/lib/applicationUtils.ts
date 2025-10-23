@@ -1,8 +1,8 @@
 // Utility functions for partner applications
 import { Resend } from 'resend';
 
-// Initialize Resend with API key from environment
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend only if API key is available
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export const generateReferralCode = (name: string, email: string): string => {
   // Generate unique referral code: FPJ + initials + random 4 digits
@@ -43,6 +43,9 @@ export const sendApprovalEmail = async (email: string, name: string, referralCod
 
   try {
     // Send actual email using Resend
+    if (!resend) {
+      throw new Error('Resend not configured');
+    }
     const { data, error } = await resend.emails.send({
       from: 'FirstPharmaJob <onboarding@firstpharmajob.com>', // Use your verified domain
       to: [email],

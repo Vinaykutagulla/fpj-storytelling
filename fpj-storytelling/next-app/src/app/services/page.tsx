@@ -4,17 +4,8 @@ import dynamic from 'next/dynamic';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'Professional Pharmaceutical Training Services - FirstPharmaJob | Industry Certifications',
-  description: 'Professional pharmaceutical training programs: Pharmacovigilance, Clinical Data Management, SAS Programming, Regulatory Affairs, and Quality Assurance. Industry-recognized certifications with job placement support.',
-  keywords: 'pharmaceutical training, clinical research courses, pharmacovigilance certification, clinical data management, SAS programming, regulatory affairs training, quality assurance courses, pharma certifications',
-  openGraph: {
-    title: 'Professional Pharmaceutical Training & Certification Services | FirstPharmaJob',
-    description: 'Comprehensive pharmaceutical training programs with industry certifications and guaranteed job placement support.',
-    url: 'https://firstpharmajob.com/services',
-  },
-  alternates: {
-    canonical: 'https://firstpharmajob.com/services'
-  }
+  title: 'Programs & Services – FirstPharmaJob',
+  description: 'Clinical research & pharma career programs: Pharmacovigilance, Clinical Data Management, SAS, CDISC and more.'
 };
 
 const ProgramsClient = dynamic(() => import('./ProgramsClient.tsx').then(m => m.default), { ssr: false });
