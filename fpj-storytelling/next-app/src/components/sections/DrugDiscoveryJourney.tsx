@@ -105,6 +105,23 @@ const DrugDiscoveryJourney: React.FC = () => {
         "Post-market surveillance",
         "Medical information support"
       ]
+    },
+    {
+      phase: 7,
+      title: "Pharmacovigilance & Monitoring",
+      duration: "Lifetime",
+      icon: "👁️",
+      color: "from-rose-500 to-pink-500",
+      bgColor: "from-rose-50 to-pink-50",
+      borderColor: "border-rose-200",
+      description: "Continuous monitoring of drug safety after launch. Adverse events are tracked, reported, and managed to ensure patient safety.",
+      roles: ["Pharmacovigilance Specialists", "Medical Safety Officers", "Regulatory Affairs Team"],
+      keyActivities: [
+        "Adverse event monitoring",
+        "Safety data analysis",
+        "Regulatory reporting",
+        "Risk management updates"
+      ]
     }
   ];
 

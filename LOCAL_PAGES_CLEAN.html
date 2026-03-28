@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FirstPharmaJob | Pharmaceutical Career Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#0b7c5e;
+  --primary-light:#e2f5ee;
+  --primary-dark:#085041;
+  --dark:#0d1f2d;
+  --gray:#4a5568;
+  --light:#f7f9f8;
+  --white:#fff;
+  --border:rgba(13,31,45,.09);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --shadow-sm:0 2px 8px rgba(11,124,94,.04);
+  --shadow-md:0 8px 24px rgba(11,124,94,.08);
+  --shadow-lg:0 12px 40px rgba(11,124,94,.12);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--dark);background:var(--white);overflow-x:hidden;line-height:1.6;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+
+/* NAVIGATION */
+nav{position:sticky;top:0;z-index:99;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:all .3s ease}
+.logo{font-family:var(--serif);font-size:1.2rem;color:var(--primary);text-decoration:none;font-weight:700;transition:transform .3s ease}
+.logo:hover{transform:scale(1.02)}
+.logo b{color:var(--dark);font-style:italic;font-weight:700}
+nav ul{display:flex;gap:2.5rem;list-style:none}
+nav a{text-decoration:none;color:var(--gray);font-size:.85rem;font-weight:500;transition:all .3s ease;position:relative}
+nav a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--primary);transition:width .3s ease}
+nav a:hover{color:var(--primary)}
+nav a:hover::after{width:100%}
+.nav-cta{background:linear-gradient(135deg,var(--primary),#0a9d6f);color:var(--white)!important;padding:10px 22px;border-radius:8px;font-weight:600;box-shadow:var(--shadow-sm);transition:all .3s ease}
+.nav-cta:hover{background:linear-gradient(135deg,var(--primary-dark),#085041);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.nav-cta::after{display:none}
+
+/* HERO SECTION */
+.hero{min-height:90vh;display:grid;grid-template-columns:55% 45%;align-items:center;padding:5rem 6%;gap:3rem;background:linear-gradient(135deg,var(--light) 0%,rgba(226,245,238,.4) 100%)}
+.hero-left>*{animation:slideInUp .6s ease both}
+.hero-left>*:nth-child(1){animation-delay:.05s}
+.hero-left>*:nth-child(2){animation-delay:.1s}
+.hero-left>*:nth-child(3){animation-delay:.15s}
+.hero-left>*:nth-child(4){animation-delay:.2s}
+
+.eyebrow{display:inline-flex;align-items:center;gap:7px;background:var(--primary-light);color:var(--primary);font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:8px 18px;border-radius:100px;border:1.5px solid rgba(11,124,94,.25);margin-bottom:1.4rem;transition:all .4s ease}
+.eyebrow:hover{border-color:var(--primary);box-shadow:0 0 12px rgba(11,124,94,.15)}
+
+h1{font-family:var(--serif);font-size:clamp(2.2rem,3.8vw,3.4rem);line-height:1.1;letter-spacing:-.8px;margin-bottom:1.2rem;color:var(--dark)}
+h1 i{font-style:italic;color:var(--primary);position:relative}
+h1 i::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),transparent);border-radius:2px}
+
+.hero-desc{font-size:1rem;color:var(--gray);max-width:460px;line-height:1.8;margin-bottom:2rem}
+
+.btn-group{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s ease;border:none;cursor:pointer}
+.btn-primary{background:linear-gradient(135deg,var(--primary),#0a9d6f);color:var(--white);position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .5s ease}
+.btn-primary:hover::before{left:100%}
+.btn-primary:hover{background:linear-gradient(135deg,var(--primary-dark),#085a45);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+
+.btn-secondary{color:var(--dark);border:2px solid var(--border);background:var(--white);transition:all .3s ease;position:relative}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light);transform:translateY(-3px)}
+
+.stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)}
+.stat{animation:slideInUp .8s ease both}
+.stat:nth-child(1){animation-delay:.25s}
+.stat:nth-child(2){animation-delay:.3s}
+.stat:nth-child(3){animation-delay:.35s}
+.stat-num{font-family:var(--serif);font-size:1.9rem;color:var(--primary);line-height:1;font-weight:700;transition:transform .3s ease}
+.stat:hover .stat-num{transform:scale(1.1)}
+.stat-label{font-size:.72rem;color:var(--gray);margin-top:3px;font-weight:500}
+
+/* HERO CARD - Right Side */
+.hero-right{position:relative;animation:slideInRight .8s ease both;animation-delay:.1s}
+.phase-preview{background:var(--white);border-radius:18px;border:1px solid var(--border);padding:1.8rem;box-shadow:var(--shadow-md);transition:all .4s ease;backdrop-filter:blur(10px)}
+.phase-preview:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:rgba(11,124,94,.2)}
+
+.preview-head{font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:1.2rem;display:flex;align-items:center;gap:8px}
+.preview-head::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+
+.preview-item{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:12px;border:1.5px solid var(--border);margin-bottom:10px;transition:all .3s ease;cursor:pointer;animation:slideIn .4s ease both}
+.preview-item:nth-child(2){animation-delay:.1s}
+.preview-item:nth-child(3){animation-delay:.15s}
+.preview-item:nth-child(4){animation-delay:.2s}
+.preview-item:nth-child(5){animation-delay:.25s}
+.preview-item:nth-child(6){animation-delay:.3s}
+
+.preview-item:hover{background:var(--primary-light);border-color:rgba(11,124,94,.3);transform:translateX(4px);box-shadow:0 4px 12px rgba(11,124,94,.08)}
+
+.preview-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:transform .3s ease}
+.preview-item:hover .preview-icon{transform:scale(1.15) rotate(5deg)}
+
+.preview-label{font-size:.85rem;font-weight:700;color:var(--dark)}
+.preview-desc{font-size:.72rem;color:var(--gray);margin-top:2px}
+
+.preview-duration{margin-left:auto;font-size:.68rem;font-weight:700;color:var(--primary);background:var(--primary-light);padding:5px 11px;border-radius:100px;flex-shrink:0;white-space:nowrap;border:1px solid rgba(11,124,94,.15)}
+
+@keyframes slideInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+
+/* TRUST BADGE */
+.trust-section{background:linear-gradient(135deg,var(--dark),#1a2a3a);padding:1.5rem 6%;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.75);font-size:.8rem;font-weight:600;transition:all .3s ease;cursor:pointer}
+.trust-item:hover{color:var(--white);transform:translateX(4px)}
+
+/* JOURNEY SECTION - NO DUPLICATES */
+.journey-section{padding:6rem 6%;background:var(--white);position:relative;overflow:hidden}
+.journey-section::before{content:'';position:absolute;top:0;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(11,124,94,.03) 0%,transparent 70%);pointer-events:none}
+
+.section-header{text-align:center;margin-bottom:4.5rem;animation:slideInUp .8s ease both}
+.section-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:.7rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.8rem,2.8vw,2.5rem);color:var(--dark);letter-spacing:-.5px;line-height:1.15;margin-bottom:.9rem}
+.section-subtitle{font-size:.96rem;color:var(--gray);max-width:600px;margin:0 auto;line-height:1.8;font-weight:500}
+
+/* PHASE TIMELINE */
+.phases-timeline{max-width:1000px;margin:0 auto;display:flex;flex-direction:column}
+.phase-item{display:grid;grid-template-columns:56px 1fr;position:relative;animation:slideInLeft .8s ease both}
+.phase-item:nth-child(1){animation-delay:0s}
+.phase-item:nth-child(2){animation-delay:.1s}
+.phase-item:nth-child(3){animation-delay:.2s}
+.phase-item:nth-child(4){animation-delay:.3s}
+.phase-item:nth-child(5){animation-delay:.4s}
+.phase-item:nth-child(6){animation-delay:.5s}
+
+.phase-item::before{content:'';position:absolute;left:27px;top:56px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--primary),transparent);opacity:.2;transition:opacity .4s ease}
+.phase-item:hover::before{opacity:.4}
+.phase-item:last-child::before{display:none}
+
+.phase-dot-col{width:56px;padding-top:2px;display:flex;justify-content:center;flex-shrink:0}
+.phase-dot{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;border:3px solid var(--white);z-index:1;flex-shrink:0;transition:all .4s ease;box-shadow:0 0 0 4px var(--white),0 0 0 6px rgba(11,124,94,.1);cursor:pointer}
+.phase-item:hover .phase-dot{transform:scale(1.15);box-shadow:0 0 0 4px var(--white),0 0 0 8px rgba(11,124,94,.2)}
+
+.phase-content{padding:0 0 3.5rem 1.5rem;transition:all .3s ease}
+.phase-item:hover .phase-content{transform:translateX(8px)}
+
+.phase-number{font-size:.68rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:.5rem}
+.phase-heading{font-family:var(--serif);font-size:1.35rem;color:var(--dark);margin-bottom:.4rem;line-height:1.2;font-weight:700}
+.phase-duration{font-size:.78rem;color:var(--gray);margin-bottom:1.2rem;font-weight:500}
+
+/* DUAL CONTENT CARD */
+.dual-content{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:linear-gradient(135deg,var(--border),rgba(11,124,94,.05));border-radius:16px;overflow:hidden;border:1.5px solid var(--border);transition:all .4s ease;box-shadow:0 2px 12px rgba(11,124,94,.04)}
+.phase-item:hover .dual-content{box-shadow:0 8px 28px rgba(11,124,94,.1);border-color:rgba(11,124,94,.15)}
+
+.dual-half{padding:1.5rem;transition:all .3s ease}
+.dual-half-left{background:linear-gradient(135deg,var(--light),rgba(242,249,246,.8))}
+.dual-half-right{background:linear-gradient(135deg,var(--primary-light),rgba(226,245,238,.6))}
+
+.dual-label{font-size:.64rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.7rem;display:flex;align-items:center;gap:6px}
+.dual-label::before{content:'';display:inline-block;width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.5}
+.dual-half-left .dual-label{color:var(--gray)}
+.dual-half-right .dual-label{color:var(--primary)}
+
+.dual-h{font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:.6rem;line-height:1.3}
+.dual-p{font-size:.82rem;color:var(--gray);line-height:1.72;font-weight:500}
+
+.bullet-list{margin-top:.9rem;display:flex;flex-direction:column;gap:5px}
+.bullet{font-size:.79rem;color:var(--gray);display:flex;gap:8px;align-items:baseline;line-height:1.5;font-weight:500}
+.bullet::before{content:'→';color:var(--primary);font-size:.75rem;font-weight:700;flex-shrink:0;transition:transform .3s ease}
+.bullet:hover::before{transform:translateX(3px)}
+
+.role-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:.9rem}
+.role-tag{font-size:.68rem;font-weight:600;padding:5px 12px;border-radius:20px;transition:all .3s ease;cursor:default}
+.role-tag-left{background:rgba(13,31,45,.08);color:var(--dark);border:1px solid rgba(13,31,45,.12)}
+.role-tag-right{background:rgba(11,124,94,.15);color:var(--primary-dark);border:1px solid rgba(11,124,94,.2)}
+.role-tag:hover{transform:translateY(-2px)}
+
+/* STATS BAND */
+.stats-band{display:grid;grid-template-columns:repeat(4,1fr);background:linear-gradient(135deg,var(--dark),#1a2a3a);padding:3.5rem 6%;gap:2rem;text-align:center;position:relative;overflow:hidden}
+.stats-band::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 50%,rgba(11,124,94,.08),transparent 50%);pointer-events:none}
+
+.stat-card{position:relative;z-index:1;padding:1rem;transition:all .4s ease;border-radius:12px;cursor:pointer}
+.stat-card:hover{transform:translateY(-4px)}
+.stat-card-num{font-family:var(--serif);font-size:2.4rem;color:#1d9e75;line-height:1;font-weight:700}
+.stat-card-label{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:.5rem;font-weight:500}
+
+/* PROMISE SECTION */
+.promise-section{padding:5.5rem 6%;background:linear-gradient(135deg,var(--light),rgba(226,245,238,.3));text-align:center;position:relative}
+.promise-section::after{content:'';position:absolute;bottom:0;right:0;width:300px;height:300px;background:radial-gradient(circle,rgba(11,124,94,.04),transparent 70%);pointer-events:none}
+
+.promise-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1000px;margin:2.5rem auto 0;position:relative;z-index:1}
+
+.promise-card{background:linear-gradient(135deg,var(--white),rgba(255,255,255,.95));border:1.5px solid var(--border);border-radius:16px;padding:1.8rem;text-align:left;transition:all .4s ease;cursor:pointer;position:relative;overflow:hidden}
+.promise-card::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(11,124,94,.04),transparent 70%);opacity:0;transition:opacity .4s ease}
+.promise-card:hover{border-color:rgba(11,124,94,.2);box-shadow:var(--shadow-lg);transform:translateY(-8px)}
+.promise-card:hover::before{opacity:1}
+
+.promise-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--primary-light),rgba(226,245,238,.5));display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;transition:all .4s ease}
+.promise-card:hover .promise-icon{transform:scale(1.2) rotate(-5deg)}
+
+.promise-title{font-size:.92rem;font-weight:700;color:var(--dark);margin-bottom:.5rem}
+.promise-desc{font-size:.8rem;color:var(--gray);line-height:1.7;font-weight:500}
+
+.promise-footnote{font-size:.75rem;color:var(--gray);margin-top:1.8rem;font-weight:500}
+
+/* CTA SECTION */
+.cta-section{background:linear-gradient(135deg,var(--primary),#0a9d6f);padding:6rem 6%;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.1),transparent 70%);border-radius:50%;pointer-events:none}
+.cta-section::after{content:'';position:absolute;bottom:-50px;left:-150px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,.08),transparent 70%);border-radius:50%;pointer-events:none}
+
+.cta-eyebrow{color:rgba(255,255,255,.6);font-weight:800}
+.cta-title{color:var(--white);font-size:clamp(1.9rem,3vw,2.8rem)}
+.cta-desc{color:rgba(255,255,255,.85);font-size:1.02rem;max-width:500px;margin:.9rem auto 2.5rem;line-height:1.8;font-weight:500}
+
+.btn-cta{background:var(--white);color:var(--primary);padding:16px 36px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.98rem;transition:all .4s ease;position:relative;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.2);border:none;cursor:pointer;display:inline-block}
+.btn-cta::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:rgba(0,0,0,.05);transition:left .4s ease}
+.btn-cta:hover::before{left:100%}
+.btn-cta:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.25);background:rgba(255,255,255,.95)}
+
+/* CONTACT SECTION */
+.contact-section{padding:4.5rem 6%;text-align:center;background:linear-gradient(135deg,var(--white),rgba(242,249,246,.5))}
+
+.contact-links{display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.contact-link{display:flex;align-items:center;gap:12px;padding:14px 24px;border-radius:12px;border:1.5px solid var(--border);text-decoration:none;color:var(--dark);font-size:.86rem;font-weight:600;transition:all .4s ease;background:var(--white);position:relative;overflow:hidden}
+.contact-link::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--primary-light);z-index:-1;transition:left .4s ease}
+.contact-link:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.contact-link:hover::before{left:0}
+
+/* FOOTER */
+footer{background:linear-gradient(135deg,var(--dark),#1a2a3a);padding:2.5rem 6%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;position:relative}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)}
+
+.footer-brand{font-family:var(--serif);color:rgba(255,255,255,.85);font-size:1.15rem;font-weight:700}
+.footer-copyright{font-size:.75rem;color:rgba(255,255,255,.4);font-weight:500}
+
+.footer-links{display:flex;gap:2rem}
+.footer-link{font-size:.8rem;color:rgba(255,255,255,.4);text-decoration:none;transition:all .3s ease;position:relative;font-weight:500}
+.footer-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:#1d9e75;transition:width .3s ease}
+.footer-link:hover{color:var(--white)}
+.footer-link:hover::after{width:100%}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .phases-timeline{padding:0 1rem}
+  .promise-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;min-height:auto;padding:3rem 5%}
+  .hero-right{display:none}
+  .dual-content{grid-template-columns:1fr}
+  .stats-band{grid-template-columns:repeat(2,1fr);padding:2.5rem 5%}
+  .promise-grid{grid-template-columns:repeat(2,1fr);gap:1.2rem}
+  nav ul{display:none}
+  footer{flex-direction:column;text-align:center}
+  .footer-links{justify-content:center}
+}
+
+@media(max-width:500px){
+  .promise-grid{grid-template-columns:1fr}
+  .stats{gap:1.2rem;flex-direction:column}
+  .contact-links{flex-direction:column;width:100%}
+  .contact-link{width:100%}
+  nav{padding:0 4%}
+  .hero{padding:2rem 4%}
+  .section-eyebrow{letter-spacing:1px;font-size:.68rem}
+  .section-title{font-size:clamp(1.5rem,2.5vw,2rem)}
+  h1{font-size:clamp(1.8rem,3vw,2.5rem)}
+}
+
+@media(prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a class="logo" href="#">First<b>Pharma</b>Job</a>
+  <ul>
+    <li><a href="#journey">The Journey</a></li>
+    <li><a href="#promise">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://firstpharmajob.vercel.app/student-partner" class="nav-cta">Enroll Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">🏆 India's First Outcome-Guaranteed Pharma Training</div>
+    <h1>Learn the <i>full journey</i> a drug takes—then take yours.</h1>
+    <p class="hero-desc">Drug discovery takes 10–15 years. Your career in it starts in 12 weeks. We teach you every phase and exactly where you fit.</p>
+    <div class="btn-group">
+      <a href="https://firstpharmajob.vercel.app/student-partner" class="btn btn-primary">Start Your Journey →</a>
+      <a href="#journey" class="btn btn-secondary">See the 6 Phases</a>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Weeks Program</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Interviews Guaranteed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">ISO</div>
+        <div class="stat-label">9001:2015 Certified</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="phase-preview">
+      <div class="preview-head">6 Phases Overview</div>
+      <div class="preview-item" style="background:#e2f5ee;border-color:rgba(11,124,94,.1)"><div class="preview-icon" style="background:#fff">🔬</div><div><div class="preview-label">Discovery &amp; Research</div><div class="preview-desc">10,000+ compounds screened</div></div><span class="preview-duration">3–6 yrs</span></div>
+      <div class="preview-item"><div class="preview-icon" style="background:#e6f1fb">🧪</div><div><div class="preview-label">Preclinical Testing</div><div class="preview-desc">Safety studies in labs &amp; animals</div></div><span class="preview-duration">2–4 yrs</span></div>
+      <div class="preview-item"><div class="preview-icon" style="background:#faeeda">👥</div><div><div class="preview-label">Clinical Trials I–III</div><div class="preview-desc">20 to 3,000+ human participants</div></div><span class="preview-duration">4–7 yrs</span></div>
+      <div class="preview-item"><div class="preview-icon" style="background:#eeedfe">📋</div><div><div class="preview-label">Regulatory Review</div><div class="preview-desc">FDA / EMA dossier &amp; approval</div></div><span class="preview-duration">1–2 yrs</span></div>
+      <div class="preview-item"><div class="preview-icon" style="background:#eaf3de">🏭</div><div><div class="preview-label">Manufacturing &amp; Launch</div><div class="preview-desc">Scale-up, QC, global distribution</div></div><span class="preview-duration">Ongoing</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST SECTION -->
+<div class="trust-section">
+  <div class="trust-item">✅ ISO 9001:2015 Certified</div>
+  <div class="trust-item">🏛️ MSME · UDYAM-TS-02-0213761</div>
+  <div class="trust-item">📜 Telangana Govt. Recognised</div>
+  <div class="trust-item">🏆 Outcome-Guaranteed</div>
+</div>
+
+<!-- JOURNEY SECTION - UNIFIED, NO DUPLICATES -->
+<section id="journey" class="journey-section">
+  <div class="section-header">
+    <div class="section-eyebrow">6 Phases · Drug Development = Your Career</div>
+    <h2 class="section-title">Every phase of drug development is where you'll work</h2>
+    <p class="section-subtitle">Left: What happens to the drug. Right: What you learn and your role. One integrated story.</p>
+  </div>
+
+  <div class="phases-timeline">
+
+    <!-- PHASE 1 -->
+    <div class="phase-item">
+      <div class="phase-dot-col"><div class="phase-dot" style="background:#e2f5ee;box-shadow:0 0 0 3px #fff,0 0 0 5px rgba(11,124,94,.2)">🔬</div></div>
+      <div class="phase-content">
+        <div class="phase-number">Phase 01</div>
+        <div class="phase-heading">Discovery &amp; Research</div>
+        <div class="phase-duration">⏱ 3–6 years | ~10,000 compounds screened | Only 250 advance</div>
+        <div class="dual-content">
+          <div class="dual-half dual-half-left">
+            <div class="dual-label">💊 The Drug</div>
+            <h3 class="dual-h">Target ID → Lead Selection</h3>
+            <p class="dual-p">Scientists identify disease targets and screen thousands of compounds. Most fail—that's intentional. Only the best survive.</p>
+            <div class="bullet-list">
+              <div class="bullet">Target identification &amp; validation</div>
+              <div class="bullet">High-throughput compound screening</div>
+              <div class="bullet">Molecular structure optimisation</div>
+              <div class="bullet">Lead candidate selection</div>
+            </div>
+          </div>
+          <div class="dual-half dual-half-right">
+            <div class="dual-label">🎓 Your Role &amp; Training</div>
+            <h3 class="dual-h">Foundation &amp; Science Literacy</h3>
+            <p class="dual-p">Build pharmaceutical vocabulary, understand drug targets and mechanism of action, work through real discovery case studies.</p>
+            <div class="role-tags">
+              <span class="role-tag role-tag-right">Research Scientist</span>
+              <span class="role-tag role-tag-right">Medicinal Chemist</span>
+              <span class="role-tag role-tag-right">Lab Technician</span>
+              <span class="role-tag role-tag-right">Bioinformatician</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-item">
+      <div class="phase-dot-col"><div class="phase-dot" style="background:#e6f1fb;box-shadow:0 0 0 3px #fff,0 0 0 5px rgba(24,95,165,.2)">🧪</div></div>
+      <div class="phase-content">
+        <div class="phase-number">Phase 02</div>
+        <div class="phase-heading">Preclinical Testing</div>
+        <div class="phase-duration">⏱ 2–4 years | In vitro &amp; in vivo | IND application filed at end</div>
+        <div class="dual-content">
+          <div class="dual-half dual-half-left">
+            <div class="dual-label">💊 The Drug</div>
+            <h3 class="dual-h">Safety Before Humans</h3>
+            <p class="dual-p">Exhaustive toxicology and pharmacokinetics in lab models and animals. One failed safety signal kills the compound—protecting patients.</p>
+            <div class="bullet-list">
+              <div class="bullet">In vitro &amp; in vivo toxicity testing</div>
+              <div class="bullet">ADME: absorption, distribution, metabolism, excretion</div>
+              <div class="bullet">Genotoxicity &amp; carcinogenicity studies</div>
+              <div class="bullet">IND / CTA dossier preparation</div>
+            </div>
+          </div>
+          <div class="dual-half dual-half-right">
+            <div class="dual-label">🎓 Your Role &amp; Training</div>
+            <h3 class="dual-h">Safety Science &amp; Data Skills</h3>
+            <p class="dual-p">Master toxicology, ADME concepts, and data analysis workflows. Prove competency through structured assessments before advancing.</p>
+            <div class="role-tags">
+              <span class="role-tag role-tag-right">Preclinical Scientist</span>
+              <span class="role-tag role-tag-right">Toxicologist</span>
+              <span class="role-tag role-tag-right">DMPK Specialist</span>
+              <span class="role-tag role-tag-right">Data Analyst</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-item">
+      <div class="phase-dot-col"><div class="phase-dot" style="background:#faeeda;box-shadow:0 0 0 3px #fff,0 0 0 5px rgba(186,117,23,.2)">👥</div></div>
+      <div class="phase-content">
+        <div class="phase-number">Phase 03</div>
+        <div class="phase-heading">Clinical Trials — Phase I</div>
+        <div class="phase-duration">⏱ 1–2 years | 20–100 healthy volunteers | Safety &amp; dosage testing</div>
+        <div class="dual-content">
+          <div class="dual-half dual-half-left">
+            <div class="dual-label">💊 The Drug</div>
+            <h3 class="dual-h">First-in-Human: Everything Watched</h3>
+            <p class="dual-p">Most critical milestone. Healthy adults take the drug for the first time. Every parameter—every side effect—is recorded and reported rigorously.</p>
+            <div class="bullet-list">
+              <div class="bullet">Safety &amp; tolerability in healthy volunteers</div>
+              <div class="bullet">Dose escalation to find maximum tolerated dose</div>
+              <div class="bullet">Adverse event monitoring per GCP standards</div>
+              <div class="bullet">Pharmacokinetic sampling &amp; analysis</div>
+            </div>
+          </div>
+          <div class="dual-half dual-half-right">
+            <div class="dual-label">🎓 Your Role &amp; Training</div>
+            <h3 class="dual-h">GCP &amp; Clinical Monitoring</h3>
+            <p class="dual-p">Learn Good Clinical Practice end-to-end. Practice clinical site monitoring and master adverse event reporting—skills for your first pharma job.</p>
+            <div class="role-tags">
+              <span class="role-tag role-tag-right">CRA</span>
+              <span class="role-tag role-tag-right">Medical Monitor</span>
+              <span class="role-tag role-tag-right">Study Coordinator</span>
+              <span class="role-tag role-tag-right">PV Officer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase-item">
+      <div class="phase-dot-col"><div class="phase-dot" style="background:#faece7;box-shadow:0 0 0 3px #fff,0 0 0 5px rgba(153,60,29,.2)">📊</div></div>
+      <div class="phase-content">
+        <div class="phase-number">Phase 04</div>
+        <div class="phase-heading">Clinical Trials — Phase II &amp; III</div>
+        <div class="phase-duration">⏱ 2–5 years | 100 to 3,000+ patients | Efficacy proven globally</div>
+        <div class="dual-content">
+          <div class="dual-half dual-half-left">
+            <div class="dual-label">💊 The Drug</div>
+            <h3 class="dual-h">Does It Work? Does It Work Better?</h3>
+            <p class="dual-p">Phase II: Does it work in patients? Phase III: Does it work better than existing treatments in thousands across multiple countries simultaneously?</p>
+            <div class="bullet-list">
+              <div class="bullet">Multi-site randomised controlled trials</div>
+              <div class="bullet">Efficacy endpoints &amp; comparative effectiveness</div>
+              <div class="bullet">SUSAR reporting &amp; safety data management</div>
+              <div class="bullet">CDISC standards, EDC, &amp; biostatistics</div>
+            </div>
+          </div>
+          <div class="dual-half dual-half-right">
+            <div class="dual-label">🎓 Your Role &amp; Training</div>
+            <h3 class="dual-h">Data Management &amp; Medical Writing</h3>
+            <p class="dual-p">Master clinical data management tools, CDISC datasets, and medical writing for CSRs and regulatory submissions—the backbone of trial teams.</p>
+            <div class="role-tags">
+              <span class="role-tag role-tag-right">Clinical Data Manager</span>
+              <span class="role-tag role-tag-right">Medical Writer</span>
+              <span class="role-tag role-tag-right">Biostatistician</span>
+              <span class="role-tag role-tag-right">CRA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase-item">
+      <div class="phase-dot-col"><div class="phase-dot" style="background:#eeedfe;box-shadow:0 0 0 3px #fff,0 0 0 5px rgba(83,74,183,.2)">📋</div></div>
+      <div class="phase-content">
+        <div class="phase-number">Phase 05</div>
+        <div class="phase-heading">Regulatory Review &amp; Approval</div>
+        <div class="phase-duration">⏱ 1–2 years | FDA / EMA / CDSCO | Market authorisation granted</div>
+        <div class="dual-content">
+          <div class="dual-half dual-half-left">
+            <div class="dual-label">💊 The Drug</div>
+            <h3 class="dual-h">The Dossier That Decides Everything</h3>
+            <p class="dual-p">Comprehensive CTD-format submission. Regulators scrutinise every study, dataset, and claim. One incomplete section delays approval by years.</p>
+            <div class="bullet-list">
+              <div class="bullet">NDA / MAA dossier compilation (CTD format)</div>
+              <div class="bullet">Regulatory agency query responses</div>
+              <div class="bullet">Risk management plans (EU-RMP, REMS)</div>
+              <div class="bullet">SmPC, labelling, patient leaflet finalisation</div>
+            </div>
+          </div>
+          <div class="dual-half dual-half-right">
+            <div class="dual-label">🎓 Your Role &amp; Training</div>
+            <h3 class="dual-h">Regulatory Affairs &amp; Certification</h3>
+            <p class="dual-p">Build your professional portfolio of completed projects. Earn certifications proving industry-readiness to regulatory and compliance employers.</p>
+            <div class="role-tags">
+              <span class="role-tag role-tag-right">RA Specialist</span>
+              <span class="role-tag role-tag-right">Compliance Officer</span>
+              <span class="role-tag role-tag-right">RA Manager</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 6 -->
+    <div class="phase-item">
+      <div class="phase-dot-col"><div class="phase-dot" style="background:#eaf3de;box-shadow:0 0 0 3px #fff,0 0 0 5px rgba(59,109,17,.2)">🚀</div></div>
+      <div class="phase-content">
+        <div class="phase-number">Phase 06</div>
+        <div class="phase-heading">Manufacturing &amp; Market Launch</div>
+        <div class="phase-duration">⏱ Ongoing | Millions of doses | Post-market surveillance never stops</div>
+        <div class="dual-content">
+          <div class="dual-half dual-half-left">
+            <div class="dual-label">💊 The Drug</div>
+            <h3 class="dual-h">Approval ≠ Done. It Must Be Perfect.</h3>
+            <p class="dual-p">Drug must be manufactured at scale with zero compromise, distributed worldwide, and monitored indefinitely for real-world safety signals.</p>
+            <div class="bullet-list">
+              <div class="bullet">GMP-compliant commercial manufacturing</div>
+              <div class="bullet">Quality control, batch release, stability testing</div>
+              <div class="bullet">Post-market surveillance &amp; Phase IV studies</div>
+              <div class="bullet">Medical information &amp; pharmacovigilance</div>
+            </div>
+          </div>
+          <div class="dual-half dual-half-right">
+            <div class="dual-label">🎓 Your Role &amp; Training</div>
+            <h3 class="dual-h">Career Launch &amp; Lifetime Support</h3>
+            <p class="dual-p">Get placed through MNC referral network. Portfolio-proven, job-ready, backed by lifetime mentorship for every career transition.</p>
+            <div class="role-tags">
+              <span class="role-tag role-tag-right">QA Specialist</span>
+              <span class="role-tag role-tag-right">Manufacturing Engineer</span>
+              <span class="role-tag role-tag-right">Medical Affairs</span>
+              <span class="role-tag role-tag-right">PV Officer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat-card"><div class="stat-card-num">10–15</div><div class="stat-card-label">Years from lab to patient</div></div>
+  <div class="stat-card"><div class="stat-card-num">$1–3B</div><div class="stat-card-label">Average development cost</div></div>
+  <div class="stat-card"><div class="stat-card-num">10,000+</div><div class="stat-card-label">Compounds screened per drug</div></div>
+  <div class="stat-card"><div class="stat-card-num">1–2%</div><div class="stat-card-label">Make it to market</div></div>
+</div>
+
+<!-- PROMISE SECTION -->
+<section id="promise" class="promise-section">
+  <div class="section-header">
+    <div class="section-eyebrow">What We Guarantee</div>
+    <h2 class="section-title">The FPJ Promise</h2>
+  </div>
+  <div class="promise-grid">
+    <div class="promise-card">
+      <div class="promise-icon">⏱️</div>
+      <h3 class="promise-title">12 Weeks to Industry-Ready</h3>
+      <p class="promise-desc">Master clinical research, regulatory affairs, and pharma operations in 12 structured weeks.</p>
+    </div>
+    <div class="promise-card">
+      <div class="promise-icon">📞</div>
+      <h3 class="promise-title">3+ Interviews Guaranteed</h3>
+      <p class="promise-desc">Minimum 3 interview calls from pharma companies—or your money back. Our reputation is yours.</p>
+    </div>
+    <div class="promise-card">
+      <div class="promise-icon">💼</div>
+      <h3 class="promise-title">Real Project Portfolio</h3>
+      <p class="promise-desc">Graduate with actual pharmaceutical projects—proof of competence, not just a certificate.</p>
+    </div>
+    <div class="promise-card">
+      <div class="promise-icon">🤝</div>
+      <h3 class="promise-title">Lifetime Support</h3>
+      <p class="promise-desc">Your career partner through every role, promotion, and transition—for life.</p>
+    </div>
+  </div>
+  <p class="promise-footnote">*Terms apply. Outcome-guaranteed with structured learning path.</p>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="section-eyebrow cta-eyebrow">Begin Today</div>
+  <h2 class="section-title cta-title">Your pharmaceutical career starts with one step.</h2>
+  <p class="cta-desc">Join India's first outcome-guaranteed clinical research training. Learn every phase. Know your role. Launch your career.</p>
+  <a href="https://firstpharmajob.vercel.app/student-partner" class="btn-cta">Become a Student Partner →</a>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact-section">
+  <div class="section-eyebrow">Reach Us</div>
+  <h2 class="section-title">Connect with FirstPharmaJob</h2>
+  <div class="contact-links">
+    <a href="https://wa.me/919100514968" class="contact-link" target="_blank"><span>💬</span><span>WhatsApp</span></a>
+    <a href="https://www.youtube.com/@FirstPharmajob" class="contact-link" target="_blank"><span>▶️</span><span>YouTube</span></a>
+    <a href="https://www.instagram.com/firstpharmajob/" class="contact-link" target="_blank"><span>📷</span><span>Instagram</span></a>
+    <a href="https://www.linkedin.com/company/firstpharmajob" class="contact-link" target="_blank"><span>💼</span><span>LinkedIn</span></a>
+    <a href="https://x.com/FPharmajob60819" class="contact-link" target="_blank"><span>𝕏</span><span>Twitter / X</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">FirstPharmaJob</div>
+  <div class="footer-copyright">© 2026 FirstPharmaJob · ISO 9001:2015 · MSME Registered · Hyderabad, India</div>
+  <div class="footer-links">
+    <a href="https://firstpharmajob.vercel.app/about" class="footer-link">About</a>
+    <a href="https://firstpharmajob.vercel.app/services" class="footer-link">Services</a>
+    <a href="https://firstpharmajob.vercel.app/contact" class="footer-link">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
