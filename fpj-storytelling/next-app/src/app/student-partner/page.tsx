@@ -1,9 +1,13 @@
 ﻿"use client";
 import React from 'react';
+import type { Metadata } from 'next';
 import OnboardingForm from './sections/OnboardingForm';
 import FAQOnboarding from './sections/FAQOnboarding';
 import EarningsCalculator from './sections/EarningsCalculator';
 import { faqItems } from './faqData';
+
+// Since this is a client component, we need to export metadata from a separate file
+// This metadata should be in a parent layout or moved to a separate page.tsx wrapper
 
 export default function StudentPartnerOnboarding() {
   // Build FAQPage JSON-LD once on server. Avoids hydration mismatch.

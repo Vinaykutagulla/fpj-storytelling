@@ -1,0 +1,91 @@
+{
+  "version": "0.3",
+  "width": 1200,
+  "height": 630,
+  "background": "#0f172a",
+  "elements": [
+    {
+      "type": "text",
+      "content": "FirstPharmaJob",
+      "fontSize": 68,
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "x": 50,
+      "y": 150
+    },
+    {
+      "type": "text", 
+      "content": "Clinical Research Training",
+      "fontSize": 42,
+      "fontWeight": "600",
+      "color": "#38bdf8",
+      "x": 50,
+      "y": 220
+    },
+    {
+      "type": "text",
+      "content": "with Job Guarantee",
+      "fontSize": 42,
+      "fontWeight": "600", 
+      "color": "#38bdf8",
+      "x": 50,
+      "y": 280
+    },
+    {
+      "type": "text",
+      "content": "✓ 95% Placement Rate  ✓ ISO 9001:2015 Certified",
+      "fontSize": 28,
+      "color": "#cbd5e1",
+      "x": 50,
+      "y": 350
+    },
+    {
+      "type": "text",
+      "content": "✓ 1000+ Students Placed  ✓ 12 Week Program",
+      "fontSize": 28,
+      "color": "#cbd5e1", 
+      "x": 50,
+      "y": 390
+    },
+    {
+      "type": "text",
+      "content": "CRA • Drug Safety • Regulatory Affairs • QA",
+      "fontSize": 24,
+      "color": "#64748b",
+      "x": 50,
+      "y": 450
+    },
+    {
+      "type": "text",
+      "content": "firstpharmajob.com",
+      "fontSize": 22,
+      "fontWeight": "500",
+      "color": "#0891b2",
+      "x": 50,
+      "y": 520
+    },
+    {
+      "type": "circle",
+      "x": 950,
+      "y": 315,
+      "radius": 180,
+      "stroke": "#2563eb",
+      "strokeWidth": 8,
+      "fill": "transparent"
+    },
+    {
+      "type": "circle", 
+      "x": 950,
+      "y": 315,
+      "radius": 120,
+      "fill": "#1e40af"
+    },
+    {
+      "type": "text",
+      "content": "🧬",
+      "fontSize": 80,
+      "x": 920,
+      "y": 340
+    }
+  ]
+}

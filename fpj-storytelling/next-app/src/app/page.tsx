@@ -2,6 +2,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import OpeningSection from '../components/sections/OpeningSection.tsx';
+import DrugDiscoveryJourney from '../components/sections/DrugDiscoveryJourney.tsx';
+import ParallelJourneySection from '../components/sections/ParallelJourneySection.tsx';
 // Remove original granular sections; user wants provided content next
 // import PreclinicalSection from '../components/sections/PreclinicalSection.tsx';
 // import ClinicalSection from '../components/sections/ClinicalSection.tsx';
@@ -21,6 +23,8 @@ export default function HomePage() {
   // Keep only opening; subsequent content will be the provided journey component
   const sections = useMemo(() => ([
     { id: 'opening', title: 'Molecule', node: <OpeningSection /> },
+    { id: 'drug-discovery', title: 'Journey', node: <DrugDiscoveryJourney /> },
+    { id: 'parallel-journey', title: 'Parallel Story', node: <ParallelJourneySection /> },
     { id: 'preclinical', title: 'Preclinical', node: <PreclinicalSection /> },
     { id: 'clinical', title: 'Clinical', node: <ClinicalSection /> },
     { id: 'regulatory', title: 'Regulatory', node: <RegulatorySection /> },

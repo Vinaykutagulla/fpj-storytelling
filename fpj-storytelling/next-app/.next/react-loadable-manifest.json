@@ -1,8 +1,8 @@
 {
   "app\\page.tsx -> ../components/dev/PerfOverlay.tsx": {
-    "id": 141,
+    "id": "app\\page.tsx -> ../components/dev/PerfOverlay.tsx",
     "files": [
-      "static/chunks/141.a06a9445b164443f.js"
+      "static/chunks/_app-pages-browser_src_components_dev_PerfOverlay_tsx.js"
     ]
   }
 }

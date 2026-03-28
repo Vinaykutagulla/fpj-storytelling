@@ -225,3 +225,81 @@ export const serviceSchema = {
     ]
   }
 }
+
+// Enhanced Course Schema for Clinical Research Training
+export const clinicalResearchCourseSchema = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Clinical Research Training with Job Guarantee",
+  "description": "Comprehensive 12-week clinical research training program with guaranteed job placement. ISO 9001:2015 certified course covering Clinical Research Associate (CRA), Drug Safety, Regulatory Affairs, and Quality Assurance.",
+  "provider": {
+    "@type": "EducationalOrganization",
+    "name": "FirstPharmaJob Institute",
+    "url": "https://firstpharmajob.com",
+    "sameAs": [
+      "https://www.linkedin.com/company/firstpharmajob",
+      "https://www.instagram.com/firstpharmajob/"
+    ]
+  },
+  "courseCode": "CRT-2025",
+  "courseDuration": "P12W",
+  "coursePrerequisites": "Graduate degree in Life Sciences, Pharmacy, Medicine, or related field",
+  "educationalCredentialAwarded": "Clinical Research Professional Certificate",
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": ["Online", "Hybrid"],
+    "duration": "P12W",
+    "startDate": "2025-01-15",
+    "endDate": "2025-04-15",
+    "instructor": {
+      "@type": "Person",
+      "name": "FirstPharmaJob Faculty",
+      "jobTitle": "Pharmaceutical Industry Expert"
+    }
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Clinical Research Associate (CRA)"
+    },
+    {
+      "@type": "Thing",
+      "name": "Drug Safety and Pharmacovigilance"
+    },
+    {
+      "@type": "Thing", 
+      "name": "Regulatory Affairs"
+    },
+    {
+      "@type": "Thing",
+      "name": "Quality Assurance in Pharmaceuticals"
+    }
+  ],
+  "teaches": [
+    "Clinical trial management and monitoring",
+    "Good Clinical Practice (GCP) guidelines",
+    "Drug safety and adverse event reporting",
+    "Regulatory submission processes",
+    "Quality assurance in clinical research",
+    "Data management and biostatistics",
+    "Medical writing and documentation"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": 4.8,
+    "ratingCount": 1000,
+    "bestRating": 5
+  },
+  "offers": {
+    "@type": "Offer",
+    "category": "Professional Training Course",
+    "price": "Contact for pricing",
+    "priceCurrency": "INR",
+    "availability": "InStock",
+    "validFrom": "2025-01-01",
+    "url": "https://firstpharmajob.com/student-partner"
+  },
+  "jobPlacementRate": "95%",
+  "certificationBody": "ISO 9001:2015",
+  "alumni": "1000+"
+}
