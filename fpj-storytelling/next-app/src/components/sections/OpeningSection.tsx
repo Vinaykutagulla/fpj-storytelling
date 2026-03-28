@@ -39,7 +39,7 @@ const OpeningSection: React.FC = () => {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="#preclinical"
+                href="#drug-discovery"
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-8 py-3 font-semibold shadow-lg shadow-indigo-600/30 hover:shadow-indigo-700/40 transition-all hover:scale-105"
               >
                 Start Your Journey
